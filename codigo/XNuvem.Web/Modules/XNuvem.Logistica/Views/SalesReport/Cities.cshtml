@@ -1,0 +1,233 @@
+﻿@model XNuvem.Logistica.Models.SalesReportViewModels.SalesReportCitiesModel
+
+@using XNuvem.Mvc.Html
+
+@section HeaderContent {
+    <style>
+        #map {
+            height: 500px;
+        }
+    </style>
+}
+
+<section class="content">
+@using (Html.BeginForm("Cities", "SalesReport", new { area = "XNuvem.Logistica" }, FormMethod.Post, new { id="SalesReport" }))
+{
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.XNAjaxDropDownFor(m => m.SlpCode, "SlpList", "SalesReport", "XNuvem.Logistica", (Model != null ? Model.SlpName : ""))
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    @Html.EditorFor(m => m.From)
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    @Html.EditorFor(m => m.To)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button id="Enviar" type="submit" class="btn btn-success" title="Enviar">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table id="CityList" class="table table-bordered table-hover nowrap" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th><input id="CheckAll" type="checkbox" /></th>
+                                <th>Estado</th>
+                                <th>Cidade</th>
+                                <th>Total de Pedidos</th>
+                                <th>Total (3 meses)</th>
+                                <th>População</th>
+                            </tr>
+                        </thead>
+                        <tbody>                            
+                        </tbody>
+                    </table>
+                </div>
+            </div><!-- ROW -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <button id="MapButtom" type="submit" class="btn btn-default" title="Mapa">Mapa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+<script>    
+    var directionsService = null;
+    var directionsDisplay = null;
+    var g_map = null;
+    var g_markers = [];
+
+    function initMap() {
+        directionsService = new google.maps.DirectionsService;
+        directionsDisplay = new google.maps.DirectionsRenderer;
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ 'address': 'Salvador, BA' }, function (results, status) {
+            var centerMap = results[0].geometry.location;
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 6,
+                center: centerMap
+            });
+            directionsDisplay.setMap(map);
+            g_map = map;
+        });
+    }
+
+    $(function ($) {
+        // Auto submit forms from xnuvem
+        $("#Enviar").click(function (e) {
+            e.preventDefault();
+            var form = $("#SalesReport");
+            var sb = form.find("#Enviar");
+            sb.prop("disabled", true);
+            var wtn = $('<span><i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;</span>');
+            sb.prepend(wtn); // Wainting...
+            $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize()
+            }).done(function (data) {
+                wtn.remove();
+                sb.prop("disabled", false);
+                if (data.IsError) {
+                    XNuvem.statusMessage.showError("Erro !", "Erro: " + data.Messages.join(","));
+                } else {
+                    //Carregar as cidades
+                    loadData(data);
+                }
+            }).fail(function (xhr) {
+                wtn.remove();
+                sb.prop("disabled", false);
+                if (xhr.responseText) {
+                    XNuvem.statusMessage.showError("Erro interno", xhr.responseText);
+                } else {
+                    XNuvem.statusMessage.showError("Erro", "O servidor não retornou nenhum valor ou não está acessível.");
+                }
+            });
+        }); // $("form[data-xn-form]").submit()
+
+        var loadData = function (data) {
+            var tb = $('#CityList tbody');
+            tb.html(''); //Limpa os dados
+            var fmt = '<tr><td><input type="checkbox" data-xn-hasdata="{7}" data-xn-way="{0}" data-xn-lat="{4}" data-xn-lng="{5}" data-xn-val="{9}" /></td><td>{1}</td><td>{2}</td><td class="text-right">{3}</td><td class="text-right">{6}</td><td class="text-right">{8}</td></tr></tr>';
+            $(data).each(function (i, o) {
+                if (o.HasData == "Y") {
+                    tb.append(
+                        fmt.replace('{0}', o.PCity + ',' + o.PState)
+                        .replace('{1}', o.PState)
+                        .replace('{2}', o.PCity)
+                        .replace('{3}', XNuvem.formatCurrency(o.PDocTotal))
+                        .replace('{4}', o.PLat)
+                        .replace('{5}', o.PLng)
+                        .replace('{6}', XNuvem.formatCurrency(o.SDocTotal))
+                        .replace('{7}', o.HasData)
+                        .replace('{8}', o.PPopulacao)
+                        .replace('{9}', o.PDocTotal)
+                        );
+                } else {
+                    tb.append(
+                        fmt.replace('{0}', o.SCity + ',' + o.SState)
+                        .replace('{1}', o.SState)
+                        .replace('{2}', o.SCity)
+                        .replace('{3}', "R$ 0,00")
+                        .replace('{4}', o.SLat)
+                        .replace('{5}', o.SLng)
+                        .replace('{6}', XNuvem.formatCurrency(o.SDocTotal))
+                        .replace('{7}', o.HasData)
+                        .replace('{8}', o.SPopulacao)
+                        .replace('{9}', 0.00)
+                        );
+                }
+            });
+
+            $('#CityList tbody input[type="checkbox"]').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue'
+            });
+        };
+
+        $('#CityList input[type="checkbox"]').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue'
+        });
+
+        $('#CheckAll').on('ifChecked', function (event) {
+            $('#CityList tbody input[type="checkbox"]').iCheck('check');
+        });
+
+        $('#CheckAll').on('ifUnchecked', function (event) {
+            $('#CityList tbody input[type="checkbox"]').iCheck('uncheck');
+        });
+
+        $('#MapButtom').click(function (e) {
+            e.preventDefault();
+            $(g_markers).each(function (i, o) {
+                o.setMap(null);
+            });
+            g_markers = [];
+            var checkboxArray = $('#CityList tbody input[type="checkbox"]:checked');
+            if (checkboxArray.length == 0) {
+                XNuvem.statusMessage.showError("Erro!", "Nenhuma cidade selecionada.");
+                return;
+            }
+            var geocoder = new google.maps.Geocoder();
+            checkboxArray.each(function (i, o) {
+                var $o = $(o);
+                var hasData = $o.attr('data-xn-hasdata');
+                var addr = $o.attr('data-xn-way');
+                var val = $o.parents('tr').find('td:eq(3)').html();
+                var pop = $o.parents('tr').find('td:eq(5)').html();
+                var valNum = $o.attr('data-xn-val');
+                var popNum = parseFloat(pop);
+                var percapta = 0.00;
+                if (!isNaN(popNum) &&  popNum > 0) {
+                    percapta = parseFloat(valNum) / popNum;
+                    if (isNaN(percapta)) {
+                        percapta = 0.0;
+                    }
+                }
+                var latLng = { lat: parseFloat($o.attr('data-xn-lat')), lng: parseFloat($o.attr('data-xn-lng')) };
+                var marker = null;
+                if (hasData == "Y") {
+                    marker = new google.maps.Marker({ position: latLng, title: addr + ', ' + val + '- População: ' + pop + '(' + XNuvem.formatCurrency(percapta) + ')' });
+                } else {
+                    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|848484",
+                        new google.maps.Size(21, 34),
+                        new google.maps.Point(0,0),
+                        new google.maps.Point(10, 34));
+                    marker = new google.maps.Marker({ position: latLng, title: addr + ', ' + val + ' - População: ' + pop + ' (' + XNuvem.formatCurrency(percapta) + ')', icon: pinImage });
+
+                }
+                marker.setMap(g_map);
+                g_markers.push(marker);
+            });
+        });
+    });
+
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMiBrfQjWxoImTQeEH8fWJqIuy6MimIy0&signed_in=true&callback=initMap" async defer></script>
+
+}

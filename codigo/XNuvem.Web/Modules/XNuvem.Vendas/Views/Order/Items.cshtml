@@ -1,0 +1,73 @@
+﻿@using System.Globalization
+@model XNuvem.Vendas.Models.ItemGroupViewModel
+@{
+    Layout = null;
+}
+
+@foreach (var group in Model.Groups) {
+    <div class="box box-solid collapsed-box" data-xn-group>
+        <div class="box-header">
+            <h3 class="box-title"><a href="#" data-xn-toggle="collapse">@group.Name</a></h3>
+            <div class="box-tools pull-right">
+                <span class="text-blue" data-xn-totalgroup data-xn-value="0">R$ 0,00</span>
+                <button class="btn btn-default btn-sm" data-widget="collapse" data-xn-btn-hide><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <div class="form-group">
+                        <strong class="text-blue">Quantidade para todo o grupo</strong>
+                            <div class="input-group">
+                                <input type="text" data-xn-itemgroup class="form-control text-right" />
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default text-blue" data-xn-btn-itemgroup><i class="fa fa-play"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-2">Item<br /><span class="text-blue">Estoque</span></th>
+                            <th class="col-xs-8">Descrição do item<br /><span class="text-blue">Preço</span></th>
+                            <th class="col-xs-2">Quantidade<br /><span class="text-blue">Total</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < group.Items.Count; i++) {
+                            <tr>
+                                <td>
+                                    @group.Items[i].ItemCode<br />
+                                    <span class="text-blue">(@group.Items[i].OnHand)</span>
+                                </td>
+                                <td>@group.Items[i].ItemName<br />
+                                    <span style="color: @group.Items[i].Color;"><i class="fa fa-square"></i></span>&nbsp;&nbsp;
+                                    <span class="text-blue" data-xn-price data-xn-value="@group.Items[i].Price.ToString(CultureInfo.InvariantCulture)">@group.Items[i].Price.ToString("C")</span>
+                                </td>
+                                <td class="text-right">
+                                    <input type="text" class="form-control text-right" data-xn-quantity data-xn-value="@group.Items[i].Quantity" data-xn-in_price="@group.Items[i].Price.ToString(CultureInfo.InvariantCulture)" data-xn-in_itemcode="@group.Items[i].ItemCode" data-xn-in_itemname="@group.Items[i].ItemName" value="@group.Items[i].Quantity" /><br />
+                                    <span class="text-blue" data-xn-linetotal data-xn-value="0">R$ 0,00</span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        </div>
+        <div class="box-footer">
+            <div class="box-tools pull-right">
+                <strong>Total do grupo:</strong>&nbsp;&nbsp;&nbsp;<span data-xn-totalgroup data-xn-value="0">R$ 0,00</span>
+                <button class="btn btn-default btn-sm" data-xn-toggle="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="box box-primary box-solid">
+    <div class="box-body">
+        <div class="row">
+            <div class="col-xs-7 col-md-10 text-right"><strong>Total a pagar:</strong></div><div class="col-xs-5 col-md-2  text-right"><strong><span id="SDocTotal" data-xn-value="0.0">R$ 0,00</span></strong></div>
+        </div>
+    </div>
+</div>

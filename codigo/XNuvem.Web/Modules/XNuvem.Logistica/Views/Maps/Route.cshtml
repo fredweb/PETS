@@ -1,0 +1,229 @@
+﻿@section HeaderContent {
+    <style>
+        #map {
+            height: 500px;
+        }
+    </style>
+}
+
+<section class="content">
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <strong><label for="RomaneioEntry">Romaneio</label></strong>
+                        <input id="RomaneioEntry" class="form-control" type="text" value="" placeholder="Romaneio" name="Romaneio">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button id="RomaneioButtom" type="submit" class="btn btn-success" title="Enviar">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <input type="checkbox" id="OptimizeMap" checked /> <strong><label for="OptimizeMap">Otimizar mapa</label></strong>
+                        <br />
+                        <strong><label for="StartCity">Cidade de Partida</label></strong>
+                        <select id="StartCity" class="select2 form-control" data-xn-select2>
+                            <option value="Salvador, BA" selected>Salvador</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <table id="CityList" class="table table-bordered table-hover nowrap" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th><input id="CheckAll" type="checkbox" /></th>
+                                <th>Estado</th>
+                                <th>Cidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>                            
+                        </tbody>
+                    </table>
+                </div>
+            </div><!-- ROW -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <button id="MapButtom" type="submit" class="btn btn-default" title="Mapa">Mapa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="map"></div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-xs-12">
+                    <table id="RouteList" class="table table-bordered table-hover nowrap" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th>Rota</th>
+                                <th>Partida</th>
+                                <th>Chegada</th>
+                                <th>Distância</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div><!-- ROW -->
+        </div>
+    </div>
+</section>
+@section Scripts {
+    <script type="text/javascript" src="@Url.Content("~/Modules/XNuvem.Logistica/Scripts/jquery.tablednd.js")"></script>
+<script>
+    var cityUrl = '@Url.Action("CityList", "Maps", new { area= "XNuvem.Logistica" })';
+
+    var directionsService = null;
+    var directionsDisplay = null;
+
+    function initMap() {
+        directionsService = new google.maps.DirectionsService;
+        directionsDisplay = new google.maps.DirectionsRenderer;
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ 'address': 'Salvador, BA' }, function (results, status) {
+            var centerMap = results[0].geometry.location;
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 6,
+                center: centerMap
+            });
+            directionsDisplay.setMap(map);            
+        });
+    }
+
+    $(function ($) {
+        $("#OptimizeMap").iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue'
+        });
+        $("#CityList").tableDnD();
+        var loadRomaneio = function (data) {
+            var tb = $('#CityList tbody');
+            tb.html(''); //Limpa os dados
+            var fmt = '<tr><td><input type="checkbox" data-xn-way="{0}" /></td><td>{1}</td><td>{2}</td></tr>';
+            tb.append(
+                '<tr><td><input type="checkbox" data-xn-way="Salvador, BA" /></td><td>BA</td><td>Salvador</td></tr>'
+                );
+            $(data).each(function (i, o) {
+                tb.append(
+                    fmt.replace('{0}', o.Name + ',' + o.State)
+                    .replace('{1}', o.State)
+                    .replace('{2}', o.Name)
+                    );
+            });
+
+            $('#CityList tbody input[type="checkbox"]').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue'
+            });
+        };
+
+        $('#CityList input[type="checkbox"]').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue'
+        });
+
+        $('#CheckAll').on('ifChecked', function (event) {
+            $('#CityList tbody input[type="checkbox"]').iCheck('check');
+        });
+
+        $('#CheckAll').on('ifUnchecked', function (event) {
+            $('#CityList tbody input[type="checkbox"]').iCheck('uncheck');
+        });
+
+        $('#RomaneioButtom').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: cityUrl,
+                method: 'POST',
+                data: {
+                    romaneioEntry: function () {
+                        return $("#RomaneioEntry").val();
+                    }
+                }
+            }).done(function (data) {
+                if (!data || data.length == 0) {
+                    XNuvem.statusMessage.showWarning("Aviso!", "O romaneio não existe ou não contem informações de cidades.");
+                    return;
+                }
+                loadRomaneio(data);
+                $("#CityList").tableDnD();
+            }).fail(function (xhr) {
+                XNuvem.statusMessage.showError("Erro!", "Não foi possível carregar o romaneio.");
+            });
+        });
+
+
+        $('#MapButtom').click(function (e) {
+            e.preventDefault();
+            var waypts = [];
+            var checkboxArray = $('#CityList tbody input[type="checkbox"]:checked');
+            if (checkboxArray.length < 2) {
+                XNuvem.statusMessage.showError("Erro!", "É necessário selecionar 2 cidades ou mais.");
+                return;
+            }
+            checkboxArray.each(function (i, o) {
+                waypts.push({
+                    location: $(o).attr('data-xn-way'),
+                    stopover: true
+                });
+            });
+            var orig = waypts.shift();
+            var dest = waypts.pop();
+            directionsService.route({
+                origin: orig.location,
+                destination: dest.location,
+                waypoints: waypts,
+                optimizeWaypoints: $("#OptimizeMap").is(":checked"),
+                travelMode: google.maps.TravelMode.DRIVING
+            }, function (response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                    var route = response.routes[0];
+                    var summaryPanel = jQuery('#RouteList tbody');
+                    summaryPanel.html('');
+                    var totalDistance = 0;
+                    // For each route, display summary information.
+                    for (var i = 0; i < route.legs.length; i++) {
+                        var routeSegment = i + 1;
+                        var inner = '<tr><td># {0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>';
+                        inner = inner.replace('{0}', routeSegment);
+                        inner = inner.replace('{1}', route.legs[i].start_address);
+                        inner = inner.replace('{2}', route.legs[i].end_address);
+                        inner = inner.replace('{3}', route.legs[i].distance.text);
+
+                        summaryPanel.append(inner);
+
+                        totalDistance += route.legs[i].distance.value;
+                    }
+
+                    var totalHtml = '<tr><td colspan="3"><strong># TOTAL EM KILÔMETROS</strong></td><td>{0}</td></tr>';
+                    totalHtml = totalHtml.replace('{0}', (totalDistance / 1000).toFixed(1) + ' km');
+                    summaryPanel.append(totalHtml);
+                } else {
+                    XNuvem.statusMessage.showError("Erro!", "Não foi possível carregar o mapa. Verifique a quantidade de cidades selecionadas se não ultrapassa o limite permitido.");
+                }
+            });
+        });
+    });
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMiBrfQjWxoImTQeEH8fWJqIuy6MimIy0&signed_in=true&callback=initMap" async defer></script>
+
+}

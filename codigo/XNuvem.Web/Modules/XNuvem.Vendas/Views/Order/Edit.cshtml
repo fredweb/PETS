@@ -1,0 +1,123 @@
+﻿@model XNuvem.Vendas.Models.OrderViewModel
+@using XNuvem.Mvc.Html
+<section class="content-header">
+    <h1>Pedido de venda<small>Alterar pedido de venda</small></h1>
+</section>
+
+<section class="content">
+    @using (Html.BeginForm("Edit", "Order", new { area = "XNuvem.Vendas" }, FormMethod.Post, new { id = "OrderForm", role = "form" })) {
+        @Html.AntiForgeryToken()
+        <div class="box">
+            <div class="box-body">
+                @Html.HiddenFor(m=>m.iDocEntry)
+                @Html.HiddenFor(m=>m.DocEntry)
+                <div class="row">
+                    <div class="col-xs-12 col-md-8">
+                        <div class="form-group">
+                            <strong><label for="CardCode">Cliente</label></strong>
+                            @Html.DropDownListFor(m => m.CardCode, new List<SelectListItem>(), new Dictionary<string, object> { { "class", "form-control" }, { "data-xn-url", @Url.Action("Select2", "Customer", new { area = "XNuvem.Vendas" }) } })
+                            @Html.ValidationMessageFor(m => m.CardCode)
+                        </div>
+                        <div class="box box-primary box-solid">
+                            <div id="CustomerCard" class="box-body" style="visibility: hidden;">
+                                <p class="small">
+                                    <a id="ButtonDetail" class="btn btn-flat btn-default btn-xs" data-xn-url="@Url.Action("Detail", "Customer", new { area = "XNuvem.Vendas" })" href="#" target="_blank"><i class="fa fa-arrow-right text-orange"></i></a> <strong class="text-blue">NOME: <span id="LabelCardCode" data-xn-htmlclear></span> - <span id="LabelCardFName" data-xn-htmlclear></span></strong><br />
+                                    ENDEREÇO: <span id="LabelAddress"></span> <span id="LabelStreetNo" data-xn-htmlclear></span> <span id="LabelBuilding" data-xn-htmlclear></span> <span id="LabelBlock" data-xn-htmlclear></span><br />
+                                    CIDADE: <span id="LabelCity" data-xn-htmlclear></span> - <span id="LabelState" data-xn-htmlclear></span> CEP: <span id="LabelZipCode" data-xn-htmlclear></span><br />
+                                    CPF/CNPJ: <span id="LabelCpfCnpj" data-xn-htmlclear></span> - INSCRIÇÃO: <span id="LabelInscricao" data-xn-htmlclear></span><br />
+                                    Limite de compromisso: <span id="LabelDebtLine" data-xn-htmlclear></span> | Limite disponivel: <span id="LabelLimitBalance" data-xn-htmlclear></span><br />
+                                    <span id="LabelCheckCredit" data-xn-htmlclear class="text-red" data-xn-url="@Url.Action("CheckCredit", "Customer", new { area = "XNuvem.Vendas" })"></span><br />
+                                </p>
+                                <div class="row">
+                                    <a id="ButtonFinantial" class="btn btn-flat btn-default btn-xs margin" href="@Url.Action("Receivables", "Customer", new { area = "XNuvem.Vendas" })" title="Detalhes financeiros"><i class="fa fa-arrow-right text-orange"></i> Detalhes financeiros</a>
+                                    <a id="ButtonLastOrder" class="btn btn-flat btn-default btn-xs margin" href="@Url.Action("LastOrder", "Order", new { area = "XNuvem.Vendas" })" title="Último pedido"><i class="fa fa-arrow-right text-orange"></i> Último pedido</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <div class="form-group">
+                            <strong>@Html.LabelFor(m => m.DocDate)</strong>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                @Html.TextBoxFor(m => m.DocDate,"{0:dd/MM/yyyy}", new Dictionary<string, object> { { "class", "form-control" }, { "data-xn-date", "" }, { "placeholder", "dd/mm/aaaa" }, { "disabled", "true" } })
+                            </div>
+                        </div>
+                        @Html.XNAjaxDropDownFor(m => m.Usage, "Usages", "Order", "XNuvem.Vendas", Model.UsageText)
+                        @Html.EditorFor(m => m.Carga)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        @Html.XNAjaxDropDownFor(m => m.RotaCode, "Rotas", "Order", "XNuvem.Vendas")
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <strong><label for="ListName">Lista de preço</label></strong>
+                            <input id="ListName" type="text" class="form-control text-blue" disabled value="@Model.BusinessPartner.ListName" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="waitCustomer" class="overlay" style="display: none;">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
+        </div>
+
+        <div id="ItemList">
+            @Html.Action("Items", "Order", new { area = "XNuvem.Vendas", listNum = Model.BusinessPartner.ListNum, iDocEntry = Model.iDocEntry })
+        </div>
+
+        <div class="box">
+            <div class="box-body">
+                <div id="CustomerPayForm" class="row" style="visibility: visible;">
+                    <div class="col-xs-12 col-md-6">
+                        @*@Html.XNAjaxDropDownFor(m => m.GroupNum, "PayGroups", "Order", "XNuvem.Vendas")*@
+                        <div class="form-group">
+                            <strong>@Html.LabelFor(m => m.GroupNum)</strong>
+                            @Html.DropDownListFor(m => m.GroupNum, new List<SelectListItem>(), new Dictionary<string, object> { { "class", "form-control" }, { "data-xn-url", @Url.Action("PayGroups", "Order", new { area = "XNuvem.Vendas" }) } })
+                            @Html.ValidationMessageFor(m => m.GroupNum)
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <strong>@Html.LabelFor(m => m.PeyMethod)</strong>
+                            @Html.DropDownListFor(m => m.PeyMethod, new List<SelectListItem>(), new Dictionary<string, object> { { "class", "form-control" }, { "data-xn-url", @Url.Action("PayMethods", "Order", new { area = "XNuvem.Vendas" }) } })
+                            @Html.ValidationMessageFor(m => m.PeyMethod)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(m => m.Comments)
+                </div>
+                <div class="form-group">
+                    <label>
+                        @Html.CheckBoxFor(m => m.Approved, new { @class = "icheck" }) &nbsp;<strong>Aprovar pedido</strong>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="box box-solid">
+            <div class="box-body">
+                <button id="SaveButton" type="submit" class="btn btn-success" data-xn-save title="Salvar">Salvar</button>
+                &nbsp;&nbsp;&nbsp;<span id="SaveInfo" class="text-red"></span>
+            </div>
+        </div>
+    }
+</section>
+@section Scripts {
+    <script>
+        var urlItems = '@Url.Action("Items", "Order", new { area = "XNuvem.Vendas" })';
+        var currentBusinessPartner = @Html.Raw(Json.Encode(Model.BusinessPartner));
+        var currentCreditBalance = @Html.Raw(Json.Encode(Model.FinancialDetails));
+        var currentRota = { "id": "@Model.RotaCode", "text": "@Model.RotaName" };
+        var currentGroupNum = { "id": "@Model.GroupNum", "text": "@Model.PymntGroup" };
+        var currentPeyMethod = { "id": "@Model.PeyMethod", "text": "@Model.PeyMethod" };
+    </script>    
+    <script src="~/Modules/XNuvem.Vendas/Scripts/xnuvem-order-edit-1.0.1.js"></script>
+}

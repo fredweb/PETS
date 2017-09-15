@@ -1,0 +1,32 @@
+﻿@model XNuvem.Producao.Models.MetaProducaoViewModel
+@using XNuvem.Mvc.Html
+
+<section class="content-header">
+    <h1>Dados de conexão da empresa</h1>
+</section>
+
+<section class="content">
+    @using (Html.XNBeginForm("MetaProducaoEdit", "Config", "XNuvem.Producao")) {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-6">
+                <div class="box">
+                    <div class="box-body">
+                        @Html.HiddenFor(m=>m.AbsEntry)
+                        @Html.EditorFor(m => m.Name)
+                        @Html.EditorFor(m => m.ManhaPacotes)
+                        @Html.EditorFor(m => m.ManhaVendas)
+                        @Html.EditorFor(m => m.TardePacotes)
+                        @Html.EditorFor(m => m.TardeVendas)
+                        @Html.EditorFor(m => m.NoitePacotes)
+                        @Html.EditorFor(m => m.NoiteVendas)
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-success" title="Salvar" data-xn-save>Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+

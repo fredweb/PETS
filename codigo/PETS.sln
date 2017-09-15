@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.Framework", "XNuvem.Framework\XNuvem.Framework.csproj", "{8360C4B9-A8EF-437D-A962-F46EE8004B1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.Framework.Tests", "XNuvem.Framework.Tests\XNuvem.Framework.Tests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.Web", "XNuvem.Web\XNuvem.Web.csproj", "{B0443050-3179-47B7-BD39-3AEAA2563B5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{1630EC0B-BB5B-4E30-BDD2-33FEA3088E0F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{43C8B97A-E874-4E27-B82F-31F08D585E12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{81C95156-4011-4F41-97B2-51332DEA8F94}"
+	ProjectSection(SolutionItems) = preProject
+		requisições.txt = requisições.txt
+		Docs\xnuvem-doc.txt = Docs\xnuvem-doc.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xnuvem.Clinica.Recepcao", "XNuvem.Web\Modules\Xnuvem.Clinica.Recepcao\Xnuvem.Clinica.Recepcao.csproj", "{29B46A3D-AE90-43D9-BC24-757EE9842900}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8360C4B9-A8EF-437D-A962-F46EE8004B1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8360C4B9-A8EF-437D-A962-F46EE8004B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8360C4B9-A8EF-437D-A962-F46EE8004B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8360C4B9-A8EF-437D-A962-F46EE8004B1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0443050-3179-47B7-BD39-3AEAA2563B5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0443050-3179-47B7-BD39-3AEAA2563B5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0443050-3179-47B7-BD39-3AEAA2563B5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0443050-3179-47B7-BD39-3AEAA2563B5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29B46A3D-AE90-43D9-BC24-757EE9842900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29B46A3D-AE90-43D9-BC24-757EE9842900}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29B46A3D-AE90-43D9-BC24-757EE9842900}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29B46A3D-AE90-43D9-BC24-757EE9842900}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{29B46A3D-AE90-43D9-BC24-757EE9842900} = {1630EC0B-BB5B-4E30-BDD2-33FEA3088E0F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75DA920B-9F44-4B8E-A583-A802B38ED488}
+	EndGlobalSection
+EndGlobal
