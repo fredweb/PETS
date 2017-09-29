@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
@@ -13,9 +13,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using XNuvem.Data.Providers;
 using XNuvem.Environment.Configuration;
 using XNuvem.Exceptions;
 using XNuvem.Logging;

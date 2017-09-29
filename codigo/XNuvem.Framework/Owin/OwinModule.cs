@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016
  * 
  * 
@@ -10,11 +10,7 @@ using Autofac;
 using Autofac.Core;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace XNuvem.Owin

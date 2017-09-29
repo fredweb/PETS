@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  *
  * Este código faz parte do Orchard e é livre para distribuição
@@ -11,7 +11,8 @@
 
 using System.Web.Hosting;
 
-namespace XNuvem.FileSystems.AppData {
+namespace XNuvem.FileSystems.AppData
+{
     /// <summary>
     /// Abstraction over the root location of "~/App_Data", mainly to enable
     /// unit testing of AppDataFolder.

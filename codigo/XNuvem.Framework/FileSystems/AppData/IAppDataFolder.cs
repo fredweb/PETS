@@ -1,6 +1,6 @@
 /****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  *
  * Este código faz parte do Orchard e é livre para distribuição
@@ -12,9 +12,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using XNuvem;
 
-namespace XNuvem.FileSystems.AppData {
+namespace XNuvem.FileSystems.AppData
+{
     /// <summary>
     /// Abstraction of App_Data folder. All virtual paths passed in or returned are relative to "~/App_Data". 
     /// Expected to work on physical filesystem, but decouples core system from web hosting apis

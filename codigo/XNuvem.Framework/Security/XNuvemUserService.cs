@@ -1,11 +1,13 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  *
  * 
 /****************************************************************************************/
 
+using Autofac;
+using Autofac.Integration.Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -15,15 +17,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using XNuvem.Data;
 using XNuvem.Logging;
 using XNuvem.Security.Permissions;
-using Autofac;
-using Autofac.Integration.Owin;
 
 namespace XNuvem.Security
 {

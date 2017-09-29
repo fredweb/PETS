@@ -1,16 +1,13 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
 
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using XNuvem.Data;
 using XNuvem.FileSystems.AppData;

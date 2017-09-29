@@ -1,18 +1,11 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using XNuvem.Web.Models;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using XNuvem.Security;
-using NHibernate.AspNet.Identity;
-using Microsoft.Owin;
 using XNuvem.UI.Messages;
+using XNuvem.Web.Models;
 
 namespace XNuvem.Web.Controllers
 {

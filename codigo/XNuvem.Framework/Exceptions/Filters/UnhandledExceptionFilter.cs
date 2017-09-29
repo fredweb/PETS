@@ -1,18 +1,5 @@
-﻿using Autofac;
-using Autofac.Integration.Owin;
-using Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using XNuvem.Data;
+﻿using System.Web.Mvc;
 using XNuvem.Environment;
-using XNuvem.Logging;
-using XNuvem.UI.Messages;
 
 namespace XNuvem.Exceptions.Filters
 {

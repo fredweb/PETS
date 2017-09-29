@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using XNuvem.Environment;
-using XNuvem.UI.Messages;
 
 namespace XNuvem.Mvc
 {

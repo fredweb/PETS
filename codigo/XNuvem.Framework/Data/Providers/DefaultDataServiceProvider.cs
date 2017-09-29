@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
@@ -13,9 +13,7 @@ using NHibernate.Engine;
 using NHibernate.Event;
 using NHibernate.Event.Default;
 using NHibernate.Persister.Entity;
-using NHibernate.Tool.hbm2ddl;
 using System;
-using System.Linq;
 using XNuvem.Data.Conventions;
 using XNuvem.Environment.Configuration;
 using XNuvem.Logging;
@@ -28,26 +26,30 @@ namespace XNuvem.Data.Providers
         private readonly IShellSettingsManager _shellSettingsManager;
         private readonly ISessionConfigurationCache _configurationCache;
         public ILogger Logger { get; set; }
-        public DefaultDataServiceProvider(IShellSettingsManager shellSettingsManager, ISessionConfigurationCache configurationCache) {
+        public DefaultDataServiceProvider(IShellSettingsManager shellSettingsManager, ISessionConfigurationCache configurationCache)
+        {
             _shellSettingsManager = shellSettingsManager;
             _configurationCache = configurationCache;
             Logger = NullLogger.Instance;
         }
 
-        public Configuration BuildConfiguration(SessionFactoryParameters parameters) {
+        public Configuration BuildConfiguration(SessionFactoryParameters parameters)
+        {
             Logger.Debug("Build database configuration");
             // Try get configuration from the cache
             var config = _configurationCache.GetConfiguration();
-            if (config != null) {
+            if (config != null)
+            {
                 return config;
             }
 
             var persistence = GetPersistenceConfigurer(parameters);
-            
+
             config = Fluently.Configure()
                 .Database(persistence)
                 .Mappings(m => BuildMappings(m, parameters))
-                .ExposeConfiguration(cfg => {
+                .ExposeConfiguration(cfg =>
+                {
                     cfg
                          .SetProperty(NHibernate.Cfg.Environment.FormatSql, Boolean.FalseString)
                          .SetProperty(NHibernate.Cfg.Environment.GenerateStatistics, Boolean.FalseString)
@@ -55,7 +57,7 @@ namespace XNuvem.Data.Providers
                          .SetProperty(NHibernate.Cfg.Environment.PropertyBytecodeProvider, "lcg")
                          .SetProperty(NHibernate.Cfg.Environment.PropertyUseReflectionOptimizer, Boolean.TrueString)
                          .SetProperty(NHibernate.Cfg.Environment.QueryStartupChecking, Boolean.FalseString)
-                        //TODO: Mudar para false em release mode (ShowSql)
+                         //TODO: Mudar para false em release mode (ShowSql)
                          .SetProperty(NHibernate.Cfg.Environment.ShowSql, Boolean.TrueString)
                          .SetProperty(NHibernate.Cfg.Environment.StatementFetchSize, "100")
                          .SetProperty(NHibernate.Cfg.Environment.UseProxyValidator, Boolean.FalseString)
@@ -73,7 +75,7 @@ namespace XNuvem.Data.Providers
 
                     parameters.Configurers.Invoke(c => c.Building(cfg), Logger);
 
-                }).BuildConfiguration();            
+                }).BuildConfiguration();
 
             // Store configuration on cache
             _configurationCache.SetConfiguration(config);
@@ -82,22 +84,26 @@ namespace XNuvem.Data.Providers
             return config;
         }
 
-        public IPersistenceConfigurer GetPersistenceConfigurer(SessionFactoryParameters sessionFactoryParameters) {
-            if (string.IsNullOrEmpty(sessionFactoryParameters.ConnectionString)) {
+        public IPersistenceConfigurer GetPersistenceConfigurer(SessionFactoryParameters sessionFactoryParameters)
+        {
+            if (string.IsNullOrEmpty(sessionFactoryParameters.ConnectionString))
+            {
                 throw new ArgumentException("The connection string is empty");
             }
 
-            var persistence = MsSqlConfiguration.MsSql2012;
+            var persistence = MySQLConfiguration.Standard;
             persistence = persistence.ConnectionString(sessionFactoryParameters.ConnectionString);
 
             // use MsSql2012Dialect to be compatible with Azure
-            persistence = persistence.Dialect<NHibernate.Dialect.MsSql2012Dialect>();
+            persistence = persistence.Dialect<NHibernate.Dialect.MySQLDialect>();
 
             return persistence;
         }
 
-        internal void BuildMappings(MappingConfiguration mapping, DataServiceParameters parameters) {
-            foreach (var map in parameters.EntityMaps) {
+        internal void BuildMappings(MappingConfiguration mapping, DataServiceParameters parameters)
+        {
+            foreach (var map in parameters.EntityMaps)
+            {
                 mapping.FluentMappings.Add(map);
             }
             mapping.FluentMappings.Conventions.Add(typeof(XNuvemForeinKeyConvention));
@@ -108,10 +114,12 @@ namespace XNuvem.Data.Providers
         class XNuvemLoadEventListener : DefaultLoadEventListener, ILoadEventListener
         {
 
-            public new void OnLoad(LoadEvent @event, LoadType loadType) {
+            public new void OnLoad(LoadEvent @event, LoadType loadType)
+            {
                 var source = (ISessionImplementor)@event.Session;
                 IEntityPersister entityPersister;
-                if (@event.InstanceToLoad != null) {
+                if (@event.InstanceToLoad != null)
+                {
                     entityPersister = source.GetEntityPersister(null, @event.InstanceToLoad);
                     @event.EntityClassName = @event.InstanceToLoad.GetType().FullName;
                 }
@@ -138,13 +146,16 @@ namespace XNuvem.Data.Providers
 
                 var keyToLoad = new EntityKey(@event.EntityId, entityPersister, source.EntityMode);
 
-                if (loadType.IsNakedEntityReturned) {
+                if (loadType.IsNakedEntityReturned)
+                {
                     @event.Result = Load(@event, entityPersister, keyToLoad, loadType);
                 }
-                else if (@event.LockMode == LockMode.None) {
+                else if (@event.LockMode == LockMode.None)
+                {
                     @event.Result = ProxyOrLoad(@event, entityPersister, keyToLoad, loadType);
                 }
-                else {
+                else
+                {
                     @event.Result = LockAndLoad(@event, entityPersister, keyToLoad, loadType, source);
                 }
             }

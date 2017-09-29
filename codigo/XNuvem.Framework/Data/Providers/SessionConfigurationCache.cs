@@ -1,26 +1,23 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
 
 using NHibernate.Cfg;
+using NHibernate.Type;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
-using XNuvem.FileSystems.AppData;
-using XNuvem.Logging;
-using XNuvem.Utility.Extensions;
-using XNuvem.Exceptions;
-using NHibernate.Type;
-using XNuvem.Utility;
-using XNuvem.Environment.Configuration;
 using System.IO;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
+using XNuvem.Environment.Configuration;
+using XNuvem.Exceptions;
+using XNuvem.FileSystems.AppData;
+using XNuvem.Logging;
+using XNuvem.Utility;
+using XNuvem.Utility.Extensions;
 
 namespace XNuvem.Data.Providers
 {

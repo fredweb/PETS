@@ -1,10 +1,5 @@
-﻿using Autofac;
-using Autofac.Integration.Owin;
-using Microsoft.Owin;
-using System;
+﻿using Microsoft.Owin;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using XNuvem.Environment;
 using XNuvem.Logging;

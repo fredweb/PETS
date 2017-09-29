@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016
  * 
  * 
@@ -8,23 +8,16 @@
 
 using Autofac;
 using Autofac.Integration.Mvc;
-using Autofac.Integration.Owin;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Compilation;
-using System.Web.Mvc;
 using System.Web.Routing;
 using XNuvem.Data;
 using XNuvem.Data.Providers;
 using XNuvem.Data.Schema;
 using XNuvem.Environment.Configuration;
-using XNuvem.Environment.Extensions;
 using XNuvem.Exceptions;
-using XNuvem.Exceptions.Filters;
 using XNuvem.FileSystems.AppData;
 using XNuvem.Logging;
 using XNuvem.Mvc;

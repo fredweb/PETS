@@ -1,14 +1,11 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
 
 using NHibernate.Cfg;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace XNuvem.Data.Providers
 {

@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using XNuvem.Data;
 using XNuvem.Data.Schema;
@@ -15,7 +11,7 @@ using XNuvem.Security;
 using XNuvem.Web.Models;
 
 namespace XNuvem.Web.Controllers
-{  
+{
     public class SettingsInstallController : Controller
     {
         private readonly IShellSettingsManager _shellSettingsManager;

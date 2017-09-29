@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016
  * 
  * 
@@ -8,25 +8,17 @@
 
 using Autofac;
 using Autofac.Integration.Mvc;
-using Autofac.Integration.Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Microsoft.Owin.BuilderProperties;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using XNuvem.Environment;
 using XNuvem.Exceptions.Filters;
 using XNuvem.Mvc;
 using XNuvem.Security;
-using System.Security.Claims;
 
 namespace XNuvem.Owin
 {

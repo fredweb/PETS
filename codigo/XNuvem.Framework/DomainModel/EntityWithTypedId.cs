@@ -2,11 +2,10 @@ namespace XNuvem.DomainModel
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Reflection;
     using System.Xml.Serialization;
-
-    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     ///     For a discussion of this object, see 

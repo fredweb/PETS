@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016
  * 
  * 
@@ -9,7 +9,6 @@
 using Autofac;
 using Microsoft.Owin;
 using Owin;
-using System.Globalization;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;

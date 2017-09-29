@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.Framework", "XNuvem.Framework\XNuvem.Framework.csproj", "{8360C4B9-A8EF-437D-A962-F46EE8004B1C}"
 EndProject
@@ -20,6 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{81C95156-4
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xnuvem.Clinica.Recepcao", "XNuvem.Web\Modules\Xnuvem.Clinica.Recepcao\Xnuvem.Clinica.Recepcao.csproj", "{29B46A3D-AE90-43D9-BC24-757EE9842900}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E7B7481D-A04C-4C2A-956B-B13B64FE47CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.DDD", "XNuvem.DDD\XNuvem.DDD.csproj", "{4D64B355-FB6F-48AE-9CF2-A95A3C35E88D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,12 +47,17 @@ Global
 		{29B46A3D-AE90-43D9-BC24-757EE9842900}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29B46A3D-AE90-43D9-BC24-757EE9842900}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29B46A3D-AE90-43D9-BC24-757EE9842900}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D64B355-FB6F-48AE-9CF2-A95A3C35E88D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D64B355-FB6F-48AE-9CF2-A95A3C35E88D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D64B355-FB6F-48AE-9CF2-A95A3C35E88D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D64B355-FB6F-48AE-9CF2-A95A3C35E88D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{29B46A3D-AE90-43D9-BC24-757EE9842900} = {1630EC0B-BB5B-4E30-BDD2-33FEA3088E0F}
+		{4D64B355-FB6F-48AE-9CF2-A95A3C35E88D} = {E7B7481D-A04C-4C2A-956B-B13B64FE47CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75DA920B-9F44-4B8E-A583-A802B38ED488}

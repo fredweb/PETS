@@ -1,23 +1,17 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  *
  * 
 /****************************************************************************************/
 
 
-using FluentNHibernate.Mapping;
 using Microsoft.AspNet.Identity;
 using NHibernate.AspNet.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using XNuvem.Data;
-using XNuvem.Security.Permissions;
 
 namespace XNuvem.Security
 {

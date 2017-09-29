@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
@@ -8,11 +8,6 @@
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using NHibernate.Cfg;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XNuvem.Utility;
 
 namespace XNuvem.Data
@@ -28,7 +23,8 @@ namespace XNuvem.Data
         /// </summary>
         /// <param name="cfg">Empty fluent NH configuration object.</param>
         /// <param name="defaultModel">Default persistence model that is about to be used.</param>
-        public virtual void Created(FluentConfiguration cfg, AutoPersistenceModel defaultModel) {
+        public virtual void Created(FluentConfiguration cfg, AutoPersistenceModel defaultModel)
+        {
             //defaultModel.OverrideAll(map => {
             //    map.IgnoreProperties(x => x.MemberInfo.IsDefined(typeof(DoNotMapAttribute), false));
             //});

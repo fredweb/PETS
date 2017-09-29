@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  *
  * Este código faz parte do Orchard e é livre para distribuição
@@ -13,10 +13,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using XNuvem.Logging;
 using XNuvem.Exceptions;
+using XNuvem.Logging;
 
-namespace XNuvem.FileSystems.AppData {
+namespace XNuvem.FileSystems.AppData
+{
     public class AppDataFolder : IAppDataFolder {
         private readonly IAppDataFolderRoot _root;
 
