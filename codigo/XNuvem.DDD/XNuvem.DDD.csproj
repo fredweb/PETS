@@ -33,6 +33,9 @@
     <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.1.1\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -40,6 +43,7 @@
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,11 +53,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\AnimalRecord.cs" />
+    <Compile Include="Entity\Categoria.cs" />
     <Compile Include="Entity\ClienteRecord.cs" />
+    <Compile Include="Entity\EspecieRecord.cs" />
+    <Compile Include="Entity\FornecedorRecord.cs" />
+    <Compile Include="Entity\MaterialRecord.cs" />
+    <Compile Include="Entity\RacaRecord.cs" />
+    <Compile Include="Entity\ServicoRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ClienteModelView.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entity\Mapping\" />
+    <Folder Include="Validacoes\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XNuvem.Framework\XNuvem.Framework.csproj">

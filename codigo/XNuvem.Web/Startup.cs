@@ -7,6 +7,7 @@
 /****************************************************************************************/
 
 using Autofac;
+using FluentValidation.Mvc;
 using Microsoft.Owin;
 using Owin;
 using System.Web.Http;
@@ -27,12 +28,14 @@ namespace XNuvem.Web
             app.UseXNuvemFramework(Registrations);
         }
 
-        public static void Registrations(ContainerBuilder builder) {
+        public static void Registrations(ContainerBuilder builder)
+        {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            FluentValidationModelValidatorProvider.Configure();
         }
     }
 }
