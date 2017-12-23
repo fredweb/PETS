@@ -9,7 +9,6 @@ namespace XNuvem.DDD.Entity
         public virtual string Nome { get; set; }
         public virtual DateTime Dtnascimento { get; set; }
         public virtual RacaRecord Raca { get; set; }
-
     }
 
     public class AnimalMap : EntityMap<AnimalRecord>

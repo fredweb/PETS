@@ -21,5 +21,4 @@ namespace XNuvem.DDD.Entity
             References(w => w.Especie).ForeignKey("FKESPECIERACA").Column("ESPECIEID");
         }
     }
-
 }

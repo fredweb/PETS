@@ -1,7 +1,7 @@
-﻿using FluentValidation;
-using FluentValidation.Attributes;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using FluentValidation;
+using FluentValidation.Attributes;
 
 namespace XNuvem.DDD.ViewModel
 {
@@ -10,8 +10,10 @@ namespace XNuvem.DDD.ViewModel
     {
         [Display(Name = "N° do Cliente", Description = "Codigo do Cliente")]
         public long? Id { get; set; }
+
         [Display(Name = "Nome do Cliente", Description = "Nome do Cliente")]
         public string Nome { get; set; }
+
         [Display(Name = "Data Nascimento", Description = "Data Nascimento")]
         public string DataNascimento { get; set; }
     }
@@ -27,7 +29,6 @@ namespace XNuvem.DDD.ViewModel
                 var auxDate = default(DateTime);
                 if (!DateTime.TryParse(data, out auxDate))
                     contexto.AddFailure("Data Invalida");
-
             });
         }
     }
