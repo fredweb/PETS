@@ -1,18 +1,17 @@
-﻿using FluentNHibernate.Conventions;
-using System;
+﻿using System;
+using FluentNHibernate;
+using FluentNHibernate.Conventions;
 
 namespace XNuvem.Data.Conventions
 {
     public class XNuvemForeinKeyConvention : ForeignKeyConvention
-    {       
-        protected override string GetKeyName(FluentNHibernate.Member property, Type type) {
-            if (property == null) {
-                return type.Name + "Code";
-            }
+    {
+        protected override string GetKeyName(Member property, Type type)
+        {
+            if (property == null) return type.Name + "Code";
 
-            if (property.PropertyType == typeof(Int32) || property.PropertyType == typeof(Int64)) {
+            if (property.PropertyType == typeof(int) || property.PropertyType == typeof(long))
                 return type.Name + "Entry";
-            }
 
             return type.Name + "Code";
         }

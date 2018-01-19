@@ -1,11 +1,13 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016
  * 
  * 
 /****************************************************************************************/
 
+using System;
+using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Microsoft.AspNet.Identity;
@@ -13,8 +15,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using System;
-using System.Web.Mvc;
 using XNuvem.Environment;
 using XNuvem.Exceptions.Filters;
 using XNuvem.Mvc;
@@ -24,14 +24,15 @@ namespace XNuvem.Owin
 {
     public static class XNuvemFrameworkExtension
     {
-        public static IAppBuilder UseXNuvemFramework(this IAppBuilder app, Action<ContainerBuilder> registrations) {
+        public static IAppBuilder UseXNuvemFramework(this IAppBuilder app, Action<ContainerBuilder> registrations)
+        {
             // Middleware to lower all Url. Must be first
             app.Use<LoweredUrlMiddleware>();
-            
+
             var container = XNuvemStarter.Start(registrations);
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new XNuvemViewEngine());
-            GlobalFilters.Filters.Add(new UnhandledExceptionFilter());            
+            GlobalFilters.Filters.Add(new UnhandledExceptionFilter());
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             // Autofac MVC Initialization
@@ -46,7 +47,7 @@ namespace XNuvem.Owin
 
             // Register the user manager to be used by Identity
             app.CreatePerOwinContext<UserManager<User>>(XNuvemUserService.Create);
-            
+
             // Security configurations
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
@@ -58,15 +59,18 @@ namespace XNuvem.Owin
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions {
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/login"),
-                Provider = new CookieAuthenticationProvider {
+                Provider = new CookieAuthenticationProvider
+                {
                     // Enables the application to validate the security stamp when the user logs in.
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<UserManager<User>, User>(
-                        validateInterval: TimeSpan.FromMinutes(15),
-                        regenerateIdentity: (manager, user) => user.CreateIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie))
+                        TimeSpan.FromMinutes(15),
+                        (manager, user) =>
+                            user.CreateIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie))
                 }
             });
 

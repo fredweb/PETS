@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  * 
  * 
@@ -16,9 +16,18 @@ namespace XNuvem.Security
     [Serializable]
     public class XNuvemSecurityException : XNuvemCoreException
     {
-        public XNuvemSecurityException(LocalizedString message) : base(message) { }
-        public XNuvemSecurityException(LocalizedString message, Exception innerException) : base(message, innerException) { }
-        protected XNuvemSecurityException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+        public XNuvemSecurityException(LocalizedString message) : base(message)
+        {
+        }
+
+        public XNuvemSecurityException(LocalizedString message, Exception innerException) : base(message,
+            innerException)
+        {
+        }
+
+        protected XNuvemSecurityException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
 
         public string PermissionName { get; set; }
         public User User { get; set; }

@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Microsoft.AspNet.Identity;
+using NHibernate.AspNet.Identity;
+using NHibernate.Linq;
 using NUnit.Framework;
 using System.Linq;
 using System.Security.Claims;

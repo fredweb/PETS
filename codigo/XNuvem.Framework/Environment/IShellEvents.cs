@@ -5,25 +5,29 @@ namespace XNuvem.Environment
     public interface IShellEvents
     {
         /// <summary>
-        /// Fired when initialize the shell
+        ///     Fired when initialize the shell
         /// </summary>
         void OnInitialize();
 
         /// <summary>
-        /// Fired when terminate the shell
+        ///     Fired when terminate the shell
         /// </summary>
         void OnTerminate();
 
         /// <summary>
-        /// Fired when begin the request
+        ///     Fired when begin the request
         /// </summary>
-        /// <param name="context"><see cref="IOwinContext"/></param>
+        /// <param name="context">
+        ///     <see cref="IOwinContext" />
+        /// </param>
         void OnBeginRequest(IOwinContext context);
 
         /// <summary>
-        /// Fired when request is ended
+        ///     Fired when request is ended
         /// </summary>
-        /// <param name="context"><see cref="IOwinContext"/></param>
+        /// <param name="context">
+        ///     <see cref="IOwinContext" />
+        /// </param>
         void OnEndRequest(IOwinContext context);
     }
 }

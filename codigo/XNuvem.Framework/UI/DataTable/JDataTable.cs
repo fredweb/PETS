@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
@@ -17,16 +17,19 @@ namespace XNuvem.UI.DataTable
 {
     public class JDataTable<TEntity> : IJDataTable<TEntity>
     {
-        private readonly IRepository<TEntity> _dataSource;
-        public ILogger Logger { get; set; }
+        private readonly IList<string> _searchableColumns;
 
-        public IRepository<TEntity> DataSource {
-            get {
-                return _dataSource;
-            }
+        public JDataTable(IRepository<TEntity> dataSource)
+        {
+            _searchableColumns = new List<string>();
+            DataSource = dataSource;
+            Logger = NullLogger.Instance;
         }
 
-        private IList<string> _searchableColumns;
+        public ILogger Logger { get; set; }
+        public string OrderByColumn { get; set; }
+
+        public IRepository<TEntity> DataSource { get; }
 
         public string DefaultOrderColumn { get; set; }
         public int Draw { get; set; }
@@ -36,15 +39,9 @@ namespace XNuvem.UI.DataTable
         public int OrderColumn { get; set; }
         public string OrderDir { get; set; }
         public string ColumnsName { get; set; }
-        public string OrderByColumn { get; set; }
 
-        public JDataTable(IRepository<TEntity> dataSource) {
-            _searchableColumns = new List<string>();
-            _dataSource = dataSource;
-            Logger = NullLogger.Instance;
-        }
-
-        public void SetParameters(FormCollection values) {
+        public void SetParameters(FormCollection values)
+        {
             Draw = ToInt(values["draw"]);
             Start = ToInt(values["Start"]);
             Length = ToInt(values["length"]);
@@ -54,59 +51,65 @@ namespace XNuvem.UI.DataTable
             OrderByColumn = values[string.Format("columns[{0}][data]", OrderColumn)];
         }
 
-        public IJDataTable<TEntity> SearchOn(string propertyName) {
+        public IJDataTable<TEntity> SearchOn(string propertyName)
+        {
             _searchableColumns.Add(propertyName);
             return this;
         }
 
-        public DataTableResult Execute() {
-            return Execute((q) => {
-                return q;
-            });
+        public DataTableResult Execute()
+        {
+            return Execute(q => { return q; });
         }
 
-        public DataTableResult Execute<TResult>(Func<IQueryable<TEntity>, IQueryable<TResult>> beforeExecute) {
+        public DataTableResult Execute<TResult>(Func<IQueryable<TEntity>, IQueryable<TResult>> beforeExecute)
+        {
             var result = new DataTableResult();
             result.draw = Draw;
             var query = DataSource.Table;
-                try {
-                    // before apply filter
-                    result.recordsTotal = query.Count();
+            try
+            {
+                // before apply filter
+                result.recordsTotal = query.Count();
 
-                    if (!string.IsNullOrEmpty(Search) && _searchableColumns.Count > 0) {
-                        var predicates = PredicateBuilder.False<TEntity>();
-                        foreach (var column in _searchableColumns) {
-                            string localSearch = Search;
-                            predicates = predicates.OrStartsWith(column, localSearch);
-                        }
-                        query = query.Where(predicates);
+                if (!string.IsNullOrEmpty(Search) && _searchableColumns.Count > 0)
+                {
+                    var predicates = PredicateBuilder.False<TEntity>();
+                    foreach (var column in _searchableColumns)
+                    {
+                        var localSearch = Search;
+                        predicates = predicates.OrStartsWith(column, localSearch);
                     }
-                    var executeQuery = beforeExecute(query);
+                    query = query.Where(predicates);
+                }
+                var executeQuery = beforeExecute(query);
 
-                    if (!string.IsNullOrEmpty(this.OrderByColumn)) {
-                        executeQuery = (this.OrderDir == "asc") ? executeQuery.OrderBy(this.OrderByColumn) : executeQuery.OrderByDescending(this.OrderByColumn);
-                    }
-                    else if (!string.IsNullOrEmpty(this.DefaultOrderColumn)) {
-                        executeQuery = (this.OrderDir == "asc") ? executeQuery.OrderBy(this.DefaultOrderColumn) : executeQuery.OrderByDescending(this.DefaultOrderColumn);
-                    }
-                    
-                    // after apply filter
-                    result.recordsFiltered = query.Count();
-                    result.data = executeQuery.Skip(Start).Take(Length).ToList() as IEnumerable<object>;
-                }
-                catch (Exception ex) {
-                    Logger.Error(ex, "Erro ao tentar executra a consulta.");
-                    result.error = ex.Message;
-                }
-            
+                if (!string.IsNullOrEmpty(OrderByColumn))
+                    executeQuery = OrderDir == "asc"
+                        ? executeQuery.OrderBy(OrderByColumn)
+                        : executeQuery.OrderByDescending(OrderByColumn);
+                else if (!string.IsNullOrEmpty(DefaultOrderColumn))
+                    executeQuery = OrderDir == "asc"
+                        ? executeQuery.OrderBy(DefaultOrderColumn)
+                        : executeQuery.OrderByDescending(DefaultOrderColumn);
+
+                // after apply filter
+                result.recordsFiltered = query.Count();
+                result.data = executeQuery.Skip(Start).Take(Length).ToList() as IEnumerable<object>;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Erro ao tentar executra a consulta.");
+                result.error = ex.Message;
+            }
+
             return result;
         }
 
-        private int ToInt(string value) {
-            int result = 0;
-            if (!Int32.TryParse(value, out result)) {
-                return 0;
-            }
+        private int ToInt(string value)
+        {
+            var result = 0;
+            if (!int.TryParse(value, out result)) return 0;
             return result;
         }
     }

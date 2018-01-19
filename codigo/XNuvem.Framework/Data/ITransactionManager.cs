@@ -1,12 +1,12 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
 
-using NHibernate;
 using System.Data;
+using NHibernate;
 
 namespace XNuvem.Data
 {

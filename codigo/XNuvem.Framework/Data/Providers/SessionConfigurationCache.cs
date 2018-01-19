@@ -1,17 +1,17 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
 
-using NHibernate.Cfg;
-using NHibernate.Type;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
+using NHibernate.Cfg;
+using NHibernate.Type;
 using XNuvem.Environment.Configuration;
 using XNuvem.Exceptions;
 using XNuvem.FileSystems.AppData;
@@ -24,13 +24,15 @@ namespace XNuvem.Data.Providers
     public class SessionConfigurationCache : ISessionConfigurationCache
     {
         private const string CSMapFileName = "mappings.bin";
-        private readonly IShellSettingsManager _shellSettingsManager;
+        private static readonly object _syncLock = new object();
         private readonly IAppDataFolder _appDataFolder;
         private readonly IEnumerable<ISessionConfigurationEvents> _configurers;
+        private readonly IShellSettingsManager _shellSettingsManager;
         private ConfigurationCache _currentConfig;
-        private static object _syncLock = new Object();
 
-        public SessionConfigurationCache(IShellSettingsManager shellSettingsManager, IAppDataFolder appDataFolder, IEnumerable<ISessionConfigurationEvents> configurers) {
+        public SessionConfigurationCache(IShellSettingsManager shellSettingsManager, IAppDataFolder appDataFolder,
+            IEnumerable<ISessionConfigurationEvents> configurers)
+        {
             _shellSettingsManager = shellSettingsManager;
             _appDataFolder = appDataFolder;
             _configurers = configurers;
@@ -42,24 +44,23 @@ namespace XNuvem.Data.Providers
         public ILogger Logger { get; set; }
         public bool Disabled { get; set; }
 
-        public Configuration GetConfiguration() {
-            lock (this) {
-                if (Disabled) {
-                    return null;
-                }
+        public Configuration GetConfiguration()
+        {
+            lock (this)
+            {
+                if (Disabled) return null;
                 Logger.Debug("Get configuration cache");
 
                 var hash = ComputeHash().Value;
 
                 // if the current configuration is unchanged, return it
-                if (_currentConfig != null && _currentConfig.Hash == hash) {
-                    return _currentConfig.Configuration;
-                }
+                if (_currentConfig != null && _currentConfig.Hash == hash) return _currentConfig.Configuration;
 
                 // Return previous configuration if it exists and has the same hash as
                 // the current blueprint.
                 var previousConfig = ReadConfiguration(hash);
-                if (previousConfig != null) {
+                if (previousConfig != null)
+                {
                     _currentConfig = previousConfig;
                     return previousConfig.Configuration;
                 }
@@ -69,17 +70,18 @@ namespace XNuvem.Data.Providers
             return null;
         }
 
-        public void SetConfiguration(Configuration config) {
+        public void SetConfiguration(Configuration config)
+        {
             Logger.Debug("Setting configuration cache");
-            lock (_syncLock) {
-                if (Disabled) {
-                    return;
-                }
+            lock (_syncLock)
+            {
+                if (Disabled) return;
 
                 var hash = ComputeHash().Value;
 
                 // Create cache and persist it
-                _currentConfig = new ConfigurationCache {
+                _currentConfig = new ConfigurationCache
+                {
                     Hash = hash,
                     Configuration = config
                 };
@@ -88,70 +90,72 @@ namespace XNuvem.Data.Providers
             }
         }
 
-        public void InvalidateCache() {
-            lock (_syncLock) {
+        public void InvalidateCache()
+        {
+            lock (_syncLock)
+            {
                 _appDataFolder.DeleteFile(GetPathName());
             }
         }
 
-        private class ConfigurationCache
+        private void StoreConfiguration(ConfigurationCache cache)
         {
-            public string Hash { get; set; }
-            public Configuration Configuration { get; set; }
+            var pathName = GetPathName();
+
+            try
+            {
+                var formatter = new BinaryFormatter();
+                using (var stream = _appDataFolder.CreateFile(pathName))
+                {
+                    formatter.Serialize(stream, cache.Hash);
+                    formatter.Serialize(stream, cache.Configuration);
+                }
+            }
+            catch (SerializationException ex)
+            {
+                //Note: This can happen when multiple processes/AppDomains try to save
+                //      the cached configuration at the same time. Only one concurrent
+                //      writer will win, and it's harmless for the other ones to fail.
+                for (Exception scan = ex; scan != null; scan = scan.InnerException)
+                    Logger.Warning("Error storing new NHibernate cache configuration: {0}", scan.Message);
+            }
         }
 
-        private void StoreConfiguration(ConfigurationCache cache) {
-                var pathName = GetPathName();
-
-                try {
-                    var formatter = new BinaryFormatter();
-                    using (var stream = _appDataFolder.CreateFile(pathName)) {
-                        formatter.Serialize(stream, cache.Hash);
-                        formatter.Serialize(stream, cache.Configuration);
-                    }
-                }
-                catch (SerializationException ex) {
-                    //Note: This can happen when multiple processes/AppDomains try to save
-                    //      the cached configuration at the same time. Only one concurrent
-                    //      writer will win, and it's harmless for the other ones to fail.
-                    for (Exception scan = ex; scan != null; scan = scan.InnerException)
-                        Logger.Warning("Error storing new NHibernate cache configuration: {0}", scan.Message);
-                }
-        }
-
-        private ConfigurationCache ReadConfiguration(string hash) {
-            var pathName = GetPathName( );
+        private ConfigurationCache ReadConfiguration(string hash)
+        {
+            var pathName = GetPathName();
 
             if (!_appDataFolder.FileExists(pathName))
                 return null;
 
-            try {
+            try
+            {
                 var formatter = new BinaryFormatter();
-                using (var stream = _appDataFolder.OpenFile(pathName)) {
-
+                using (var stream = _appDataFolder.OpenFile(pathName))
+                {
                     // if the stream is empty, stop here
-                    if (stream.Length == 0) {
+                    if (stream.Length == 0) return null;
+
+                    var oldHash = (string) formatter.Deserialize(stream);
+                    if (hash != oldHash)
+                    {
+                        Logger.Information(
+                            "The cached NHibernate configuration is out of date. A new one will be re-generated.");
                         return null;
                     }
 
-                    var oldHash = (string)formatter.Deserialize(stream);
-                    if (hash != oldHash) {
-                        Logger.Information("The cached NHibernate configuration is out of date. A new one will be re-generated.");
-                        return null;
-                    }
+                    var oldConfig = (Configuration) formatter.Deserialize(stream);
 
-                    var oldConfig = (Configuration)formatter.Deserialize(stream);
-
-                    return new ConfigurationCache {
+                    return new ConfigurationCache
+                    {
                         Hash = oldHash,
                         Configuration = oldConfig
                     };
                 }
             }
-            catch (Exception ex) {
-                if (ex.IsFatal()) {
-                    throw;
-                }
+            catch (Exception ex)
+            {
+                if (ex.IsFatal()) throw;
                 for (var scan = ex; scan != null; scan = scan.InnerException)
                     Logger.Warning("Error reading the cached NHibernate configuration: {0}", scan.Message);
                 Logger.Information("A new one will be re-generated.");
@@ -159,7 +163,8 @@ namespace XNuvem.Data.Providers
             }
         }
 
-        private Hash ComputeHash() {
+        private Hash ComputeHash()
+        {
             var hash = new Hash();
 
             // Shell settings physical location
@@ -168,13 +173,14 @@ namespace XNuvem.Data.Providers
             //   xcopy migrations work as expected.
             var pathName = GetPathName();
             hash.AddString(_appDataFolder.MapPath(pathName).ToLowerInvariant());
-            
+
             // XNuvem version, to rebuild the mappings for each new version
-            var xnuvemVersion = new System.Reflection.AssemblyName(typeof(SessionConfigurationCache).Assembly.FullName).Version.ToString();
+            var xnuvemVersion =
+                new AssemblyName(typeof(SessionConfigurationCache).Assembly.FullName).Version.ToString();
             hash.AddString(xnuvemVersion);
 
             // Date and time of the current assembly
-            FileInfo fileInfo = new FileInfo(typeof(SessionConfigurationCache).Assembly.Location);
+            var fileInfo = new FileInfo(typeof(SessionConfigurationCache).Assembly.Location);
             hash.AddDateTime(fileInfo.CreationTime);
 
             var settings = _shellSettingsManager.GetSettings();
@@ -183,19 +189,21 @@ namespace XNuvem.Data.Providers
             hash.AddString(settings.ConnectionSettings.DataProvider);
 
             // Assembly names, record names and property names
-            foreach (var recordType in settings.Entities) {
+            foreach (var recordType in settings.Entities)
+            {
                 hash.AddTypeReference(recordType);
 
                 if (recordType.BaseType != null)
                     hash.AddTypeReference(recordType.BaseType);
 
-                foreach (var property in recordType.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)) {
+                foreach (var property in recordType.GetProperties(
+                    BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance))
+                {
                     hash.AddString(property.Name);
                     hash.AddTypeReference(property.PropertyType);
 
-                    foreach (var attr in property.GetCustomAttributesData()) {
+                    foreach (var attr in property.GetCustomAttributesData())
                         hash.AddTypeReference(attr.Constructor.DeclaringType);
-                    }
                 }
             }
 
@@ -204,8 +212,15 @@ namespace XNuvem.Data.Providers
             return hash;
         }
 
-        private string GetPathName() {
+        private string GetPathName()
+        {
             return CSMapFileName;
+        }
+
+        private class ConfigurationCache
+        {
+            public string Hash { get; set; }
+            public Configuration Configuration { get; set; }
         }
     }
 }

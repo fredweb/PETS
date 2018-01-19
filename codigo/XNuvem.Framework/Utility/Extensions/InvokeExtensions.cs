@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  *
  * Este código faz parte do Orchard e é livre para distribuição
@@ -19,48 +19,47 @@ namespace XNuvem.Utility.Extensions
 {
     public static class InvokeExtensions
     {
-
         /// <summary>
-        /// Safely invoke methods by catching non fatal exceptions and logging them
+        ///     Safely invoke methods by catching non fatal exceptions and logging them
         /// </summary>
-        public static void Invoke<TEvents>(this IEnumerable<TEvents> events, Action<TEvents> dispatch, ILogger logger) {
-            foreach (var sink in events) {
-                try {
+        public static void Invoke<TEvents>(this IEnumerable<TEvents> events, Action<TEvents> dispatch, ILogger logger)
+        {
+            foreach (var sink in events)
+                try
+                {
                     dispatch(sink);
                 }
-                catch (Exception ex) {
-                    if (IsLogged(ex)) {
+                catch (Exception ex)
+                {
+                    if (IsLogged(ex))
                         logger.Error(ex, "{2} thrown from {0} by {1}",
                             typeof(TEvents).Name,
                             sink.GetType().FullName,
                             ex.GetType().Name);
-                    }
 
-                    if (ex.IsFatal()) {
-                        throw;
-                    }
+                    if (ex.IsFatal()) throw;
                 }
-            }
         }
 
-        public static IEnumerable<TResult> Invoke<TEvents, TResult>(this IEnumerable<TEvents> events, Func<TEvents, TResult> dispatch, ILogger logger) {
-
-            foreach (var sink in events) {
-                TResult result = default(TResult);
-                try {
+        public static IEnumerable<TResult> Invoke<TEvents, TResult>(this IEnumerable<TEvents> events,
+            Func<TEvents, TResult> dispatch, ILogger logger)
+        {
+            foreach (var sink in events)
+            {
+                var result = default(TResult);
+                try
+                {
                     result = dispatch(sink);
                 }
-                catch (Exception ex) {
-                    if (IsLogged(ex)) {
+                catch (Exception ex)
+                {
+                    if (IsLogged(ex))
                         logger.Error(ex, "{2} thrown from {0} by {1}",
                             typeof(TEvents).Name,
                             sink.GetType().FullName,
                             ex.GetType().Name);
-                    }
 
-                    if (ex.IsFatal()) {
-                        throw;
-                    }
+                    if (ex.IsFatal()) throw;
                 }
 
                 yield return result;
@@ -68,7 +67,8 @@ namespace XNuvem.Utility.Extensions
         }
 
 
-        private static bool IsLogged(Exception ex) {
+        private static bool IsLogged(Exception ex)
+        {
             return ex is XNuvemSecurityException || !ex.IsFatal();
         }
     }

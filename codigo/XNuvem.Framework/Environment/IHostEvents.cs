@@ -3,12 +3,12 @@
     public interface IHostEvents
     {
         /// <summary>
-        /// Fired when initialize the shell
+        ///     Fired when initialize the shell
         /// </summary>
         void OnInitialize();
 
         /// <summary>
-        /// Fired when terminate the shell
+        ///     Fired when terminate the shell
         /// </summary>
         void OnTerminate();
     }

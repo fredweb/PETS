@@ -4,30 +4,35 @@ using XNuvem.Environment;
 namespace XNuvem.Exceptions.Filters
 {
     public class UnhandledExceptionFilter : HandleErrorAttribute
-    {   
-        public UnhandledExceptionFilter() {
-            
-        }
-
-        public override void OnException(ExceptionContext filterContext) {
-            if (!filterContext.ExceptionHandled && filterContext.Exception != null) {
+    {
+        public override void OnException(ExceptionContext filterContext)
+        {
+            if (!filterContext.ExceptionHandled && filterContext.Exception != null)
+            {
                 IPolicyException policyException = null;
-                if (XNuvemServices.Current.TryResolve<IPolicyException>(out policyException)) {
+                if (XNuvemServices.Current.TryResolve(out policyException))
+                {
                     filterContext.ExceptionHandled = policyException.HandleException(filterContext.Exception);
 
-                    if (filterContext.ExceptionHandled) {
+                    if (filterContext.ExceptionHandled)
+                    {
                         // Se for uma chamada em Ajax, retorna em json o resultado do erro.
-                        if (string.Compare(filterContext.HttpContext.Request.Headers["X-Requested-With"], "XMLHttpRequest", true) == 0) {
+                        if (string.Compare(filterContext.HttpContext.Request.Headers["X-Requested-With"],
+                                "XMLHttpRequest", true) == 0)
+                        {
                             filterContext.HttpContext.Response.Clear();
                             //filterContext.Result = new ErrorJsonResult(filterContext.Exception);
-                            filterContext.Result = new ContentResult {
+                            filterContext.Result = new ContentResult
+                            {
                                 Content = filterContext.Exception.Message,
                                 ContentType = "text/plain"
                             };
                         }
-                        else {
+                        else
+                        {
                             // Caso contrário mostra a página de erro padrão.
-                            filterContext.Result = new ViewResult() {
+                            filterContext.Result = new ViewResult
+                            {
                                 ViewData = filterContext.Controller.ViewData,
                                 TempData = filterContext.Controller.TempData,
                                 ViewName = "ErrorPage"

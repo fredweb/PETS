@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
@@ -14,6 +14,7 @@ namespace XNuvem.Data
 {
     public interface IRepository<T>
     {
+        IQueryable<T> Table { get; }
         void Create(T entity);
         void Update(T entity);
         void Delete(T entity);
@@ -22,8 +23,6 @@ namespace XNuvem.Data
 
         T Get(int id);
         T Get(Expression<Func<T, bool>> predicate);
-
-        IQueryable<T> Table { get; }
 
         int Count(Expression<Func<T, bool>> predicate);
         IEnumerable<T> Fetch(Expression<Func<T, bool>> predicate);

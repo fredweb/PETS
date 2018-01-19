@@ -1,17 +1,17 @@
-﻿namespace XNuvem.DomainModel
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
+namespace XNuvem.DomainModel
+{
     /// <summary>
     ///     Provides a standard base class for facilitating comparison of value objects using all the object's properties.
     /// </summary>
     /// <remarks>
-    ///     For a discussion of the implementation of Equals/GetHashCode, see 
+    ///     For a discussion of the implementation of Equals/GetHashCode, see
     ///     http://devlicio.us/blogs/billy_mccafferty/archive/2007/04/25/using-equals-gethashcode-effectively.aspx
-    ///     and http://groups.google.com/group/sharp-architecture/browse_thread/thread/f76d1678e68e3ece?hl=en for 
+    ///     and http://groups.google.com/group/sharp-architecture/browse_thread/thread/f76d1678e68e3ece?hl=en for
     ///     an in depth and conclusive resolution.
     /// </remarks>
     [Serializable]
@@ -25,10 +25,8 @@
         /// <returns>The result of the operator.</returns>
         public static bool operator ==(ValueObject valueObject1, ValueObject valueObject2)
         {
-            if ((object)valueObject1 == null)
-            {
-                return (object)valueObject2 == null;
-            }
+            if ((object) valueObject1 == null)
+                return (object) valueObject2 == null;
 
             return valueObject1.Equals(valueObject2);
         }
@@ -45,10 +43,10 @@
         }
 
         /// <summary>
-        ///     Determines whether the specified <see cref="Object" /> is equal to this instance.
+        ///     Determines whether the specified <see cref="object" /> is equal to this instance.
         /// </summary>
-        /// <param name="obj">The <see cref="Object" /> to compare with the current <see cref="Object" />.</param>
-        /// <returns><c>true</c> if the specified <see cref="Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        /// <param name="obj">The <see cref="object" /> to compare with the current <see cref="object" />.</param>
+        /// <returns><c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
@@ -77,11 +75,11 @@
         protected override IEnumerable<PropertyInfo> GetTypeSpecificSignatureProperties()
         {
             var invalidlyDecoratedProperties =
-                this.GetType().GetProperties().Where(
+                GetType().GetProperties().Where(
                     p => Attribute.IsDefined(p, typeof(DomainSignatureAttribute), true));
 
-            string message = "Properties were found within " + this.GetType() +
-                             @" having the
+            var message = "Properties were found within " + GetType() +
+                          @" having the
                 [DomainSignature] attribute. The domain signature of a value object includes all
                 of the properties of the object by convention; consequently, adding [DomainSignature]
                 to the properties of a value object's properties is misleading and should be removed. 
@@ -90,7 +88,7 @@
             if (invalidlyDecoratedProperties.Any())
                 throw new InvalidOperationException(message);
 
-            return this.GetType().GetProperties();
+            return GetType().GetProperties();
         }
     }
 }

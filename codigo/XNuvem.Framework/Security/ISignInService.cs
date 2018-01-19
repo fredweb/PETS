@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNet.Identity.Owin;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace XNuvem.Security
 {

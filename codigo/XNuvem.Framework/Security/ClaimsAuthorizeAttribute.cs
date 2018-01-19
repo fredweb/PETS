@@ -8,22 +8,20 @@ namespace XNuvem.Security
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
     public class ClaimsAuthorizeAttribute : AuthorizeAttribute
     {
-        private string _claimType;
-        private string _claimValue;
+        private readonly string _claimType;
+        private readonly string _claimValue;
 
-        public ClaimsAuthorizeAttribute(string type, string value) {
+        public ClaimsAuthorizeAttribute(string type, string value)
+        {
             _claimType = type;
             _claimValue = value;
         }
 
-        public override void OnAuthorization(AuthorizationContext filterContext) {
+        public override void OnAuthorization(AuthorizationContext filterContext)
+        {
             var user = HttpContext.Current.User as ClaimsPrincipal;
-            if (user.HasClaim(_claimType, _claimValue)) {
-                base.OnAuthorization(filterContext);
-            }
-            else {
-                filterContext.Result = new HttpUnauthorizedResult();
-            }
+            if (user.HasClaim(_claimType, _claimValue)) base.OnAuthorization(filterContext);
+            else filterContext.Result = new HttpUnauthorizedResult();
         }
     }
 }

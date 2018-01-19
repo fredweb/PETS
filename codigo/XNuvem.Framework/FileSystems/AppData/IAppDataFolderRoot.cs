@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  *
  * Este código faz parte do Orchard e é livre para distribuição
@@ -14,27 +14,26 @@ using System.Web.Hosting;
 namespace XNuvem.FileSystems.AppData
 {
     /// <summary>
-    /// Abstraction over the root location of "~/App_Data", mainly to enable
-    /// unit testing of AppDataFolder.
+    ///     Abstraction over the root location of "~/App_Data", mainly to enable
+    ///     unit testing of AppDataFolder.
     /// </summary>
-    public interface IAppDataFolderRoot : ISingletonDependency {
+    public interface IAppDataFolderRoot : ISingletonDependency
+    {
         /// <summary>
-        /// Virtual path of root ("~/App_Data")
+        ///     Virtual path of root ("~/App_Data")
         /// </summary>
         string RootPath { get; }
+
         /// <summary>
-        /// Physical path of root (typically: MapPath(RootPath))
+        ///     Physical path of root (typically: MapPath(RootPath))
         /// </summary>
         string RootFolder { get; }
     }
 
-    public class AppDataFolderRoot : IAppDataFolderRoot {
-        public string RootPath {
-            get { return "~/App_Data"; }
-        }
+    public class AppDataFolderRoot : IAppDataFolderRoot
+    {
+        public string RootPath => "~/App_Data";
 
-        public string RootFolder {
-            get { return HostingEnvironment.MapPath(RootPath); }
-        }
+        public string RootFolder => HostingEnvironment.MapPath(RootPath);
     }
 }

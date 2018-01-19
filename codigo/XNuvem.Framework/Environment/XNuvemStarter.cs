@@ -1,18 +1,18 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016
  * 
  * 
 /****************************************************************************************/
 
-using Autofac;
-using Autofac.Integration.Mvc;
 using System;
 using System.Linq;
 using System.Reflection;
 using System.Web.Compilation;
 using System.Web.Routing;
+using Autofac;
+using Autofac.Integration.Mvc;
 using XNuvem.Data;
 using XNuvem.Data.Providers;
 using XNuvem.Data.Schema;
@@ -31,7 +31,8 @@ namespace XNuvem.Environment
 {
     public static class XNuvemStarter
     {
-        public static IContainer Start(Action<ContainerBuilder> registrations) {
+        public static IContainer Start(Action<ContainerBuilder> registrations)
+        {
             var builder = new ContainerBuilder();
 
             // see note: http://docs.autofac.org/en/latest/faq/iis-restart.html
@@ -40,7 +41,7 @@ namespace XNuvem.Environment
                 .OfType<Assembly>()
                 .Where(x => !x.GlobalAssemblyCache)
                 .ToArray();
-                
+
 
             // Modules registrations
             builder.RegisterModule<OwinModule>();
@@ -72,7 +73,7 @@ namespace XNuvem.Environment
             builder.RegisterType<DefaultSchemaUpdate>().As<ISchemaUpdate>().InstancePerDependency();
             builder.RegisterType<SessionFactoryHolder>().As<ISessionFactoryHolder>().InstancePerLifetimeScope();
             builder.RegisterType<TransactionManager>().As<ITransactionManager>().InstancePerRequest();
-            
+
             // Using autoregistration instead
             builder.RegisterModule<DataModule>();
 
@@ -92,7 +93,7 @@ namespace XNuvem.Environment
             builder.RegisterAssemblyTypes(assemblies)
                 .Where(t => !t.IsAbstract && typeof(IMenuProvider).IsAssignableFrom(t))
                 .As<IMenuProvider>()
-                .InstancePerDependency();            
+                .InstancePerDependency();
 
             // Autofac Mvc registrations            
             builder.RegisterControllers(assemblies);

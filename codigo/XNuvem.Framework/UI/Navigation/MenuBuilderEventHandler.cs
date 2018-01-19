@@ -9,21 +9,23 @@ namespace XNuvem.UI.Navigation
         private readonly IMenuManager _menuManager;
         private readonly IEnumerable<IMenuProvider> _providers;
 
-
-        public ILogger Logger { get; set; }
-
-        public MenuBuilderEventHandler(IMenuManager menuManager, IEnumerable<IMenuProvider> providers) {
+        public MenuBuilderEventHandler(IMenuManager menuManager, IEnumerable<IMenuProvider> providers)
+        {
             _menuManager = menuManager;
             _providers = providers;
             Logger = NullLogger.Instance;
         }
 
-        public void OnInitialize() {
+
+        public ILogger Logger { get; set; }
+
+        public void OnInitialize()
+        {
             _menuManager.BuildMenu(_providers);
         }
 
-        public void OnTerminate() {
-            
+        public void OnTerminate()
+        {
         }
     }
 }

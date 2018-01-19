@@ -12,7 +12,8 @@ namespace XNuvem.Data
 
     public static class UserIdentifiedClassMapExtensions
     {
-        public static void MapUserIdentified<T>(this EntityMap<T> that) where T : UserIdentifiedRecord {
+        public static void MapUserIdentified<T>(this EntityMap<T> that) where T : UserIdentifiedRecord
+        {
             that.Map(m => m.CreatedBy).Length(100).Not.Nullable();
             that.Map(m => m.CreatedAt).Not.Nullable().Default("(getdate())");
             that.Map(m => m.UpdatedBy).Length(100).Nullable();

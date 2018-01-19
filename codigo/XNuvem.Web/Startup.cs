@@ -1,15 +1,15 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016
  * 
  * 
 /****************************************************************************************/
 
 using Autofac;
-using FluentValidation.Mvc;
 using Microsoft.Owin;
 using Owin;
+using System.Globalization;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -28,14 +28,12 @@ namespace XNuvem.Web
             app.UseXNuvemFramework(Registrations);
         }
 
-        public static void Registrations(ContainerBuilder builder)
-        {
+        public static void Registrations(ContainerBuilder builder) {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            FluentValidationModelValidatorProvider.Configure();
         }
     }
 }

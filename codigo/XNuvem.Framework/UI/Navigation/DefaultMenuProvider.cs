@@ -2,8 +2,8 @@
 {
     public class DefaultMenuProvider : IMenuProvider
     {
-        public void BuildMenu(MenuBuilder builder) {
-            
+        public void BuildMenu(MenuBuilder builder)
+        {
         }
     }
 }

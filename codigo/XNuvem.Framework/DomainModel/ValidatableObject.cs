@@ -1,10 +1,9 @@
-﻿namespace XNuvem.DomainModel
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace XNuvem.DomainModel
 {
-    using System;
-    using System.Collections.Generic;
-
-    using System.ComponentModel.DataAnnotations;
-
     /// <summary>
     ///     Serves as the base class for objects that are validatable.
     /// </summary>
@@ -17,7 +16,7 @@
         /// <returns><c>true</c> if this instance is valid; otherwise, <c>false</c>.</returns>
         public virtual bool IsValid()
         {
-            return this.ValidationResults().Count == 0;
+            return ValidationResults().Count == 0;
         }
 
         /// <summary>

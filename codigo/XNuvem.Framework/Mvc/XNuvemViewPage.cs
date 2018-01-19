@@ -7,18 +7,18 @@ namespace XNuvem.Mvc
     {
         public IServiceContext ServiceContext { get; set; }
 
-        public override void InitHelpers() {
+        public override void InitHelpers()
+        {
             base.InitHelpers();
             ServiceContext = XNuvemServices.Current;
         }
 
-        public override void Execute() {
-
+        public override void Execute()
+        {
         }
     }
 
     public class XNuvemViewPage : ViewPage<dynamic>
     {
-
     }
 }

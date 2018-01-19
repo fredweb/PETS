@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  *
  * 
@@ -16,32 +16,33 @@ namespace XNuvem
     [Serializable]
     public class XNuvemCoreException : Exception
     {
-        private readonly LocalizedString _localizedMessage;
-
         public XNuvemCoreException(string message)
-            : base(message) {
-
+            : base(message)
+        {
         }
 
         public XNuvemCoreException(string message, Exception innerException)
-            : base(message, innerException) {
-
+            : base(message, innerException)
+        {
         }
 
         public XNuvemCoreException(LocalizedString message)
-            : base(message.Text) {
-            _localizedMessage = message;
+            : base(message.Text)
+        {
+            LocalizedMessage = message;
         }
 
         public XNuvemCoreException(LocalizedString message, Exception innerException)
-            : base(message.Text, innerException) {
-            _localizedMessage = message;
+            : base(message.Text, innerException)
+        {
+            LocalizedMessage = message;
         }
 
         protected XNuvemCoreException(SerializationInfo info, StreamingContext context)
-            : base(info, context) {
+            : base(info, context)
+        {
         }
 
-        public LocalizedString LocalizedMessage { get { return _localizedMessage; } }
+        public LocalizedString LocalizedMessage { get; }
     }
 }

@@ -1,14 +1,14 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
 
-using NHibernate;
-using NHibernate.Cfg;
 using System;
 using System.Collections.Generic;
+using NHibernate;
+using NHibernate.Cfg;
 using XNuvem.Data.Providers;
 using XNuvem.Environment.Configuration;
 using XNuvem.Logging;
@@ -18,19 +18,18 @@ namespace XNuvem.Data
 {
     public class SessionFactoryHolder : ISessionFactoryHolder
     {
-        private readonly IShellSettingsManager _shellSettingsManager;
-        private readonly IDataServiceProvider _dataServiceProvider;
         private readonly Func<IEnumerable<ISessionConfigurationEvents>> _configurers;
-
-        private ISessionFactory _sessionFactory;
+        private readonly IDataServiceProvider _dataServiceProvider;
+        private readonly IShellSettingsManager _shellSettingsManager;
         private Configuration _configuration;
 
-        public ILogger Logger { get; set; }
+        private ISessionFactory _sessionFactory;
 
         public SessionFactoryHolder(
-            IShellSettingsManager shellSettingsManager, 
+            IShellSettingsManager shellSettingsManager,
             IDataServiceProvider dataServieProvider,
-            Func<IEnumerable<ISessionConfigurationEvents>> configurers) {
+            Func<IEnumerable<ISessionConfigurationEvents>> configurers)
+        {
             _shellSettingsManager = shellSettingsManager;
             _dataServiceProvider = dataServieProvider;
             _configurers = configurers;
@@ -38,35 +37,39 @@ namespace XNuvem.Data
             Logger = NullLogger.Instance;
         }
 
-        public ISessionFactory GetSessionFactory() {
-            lock (this) {
-                if (_sessionFactory == null) {
-                    _sessionFactory = BuildSessionFactory();
-                }
+        public ILogger Logger { get; set; }
+
+        public ISessionFactory GetSessionFactory()
+        {
+            lock (this)
+            {
+                if (_sessionFactory == null) _sessionFactory = BuildSessionFactory();
             }
             return _sessionFactory;
         }
 
-        public Configuration GetConfiguration() {
-            lock (this) {
-                if (_configuration == null) {
-                    _configuration = BuildConfiguration();
-                }
+        public Configuration GetConfiguration()
+        {
+            lock (this)
+            {
+                if (_configuration == null) _configuration = BuildConfiguration();
             }
             return _configuration;
         }
 
 
-        private ISessionFactory BuildSessionFactory() {
+        private ISessionFactory BuildSessionFactory()
+        {
             Logger.Debug("Building session factory");
 
-            Configuration config = GetConfiguration();
+            var config = GetConfiguration();
             var result = config.BuildSessionFactory();
             Logger.Debug("Done building session factory");
             return result;
         }
 
-        private Configuration BuildConfiguration() {
+        private Configuration BuildConfiguration()
+        {
             Logger.Debug("Building configuration");
             var parameters = GetSessionFactoryParameters();
 
@@ -90,6 +93,7 @@ namespace XNuvem.Data
             //        }
             //    }
             //}
+
             #endregion
 
             parameters.Configurers.Invoke(c => c.Finished(config), Logger);
@@ -98,10 +102,12 @@ namespace XNuvem.Data
             return config;
         }
 
-        private SessionFactoryParameters GetSessionFactoryParameters() {
+        private SessionFactoryParameters GetSessionFactoryParameters()
+        {
             var settings = _shellSettingsManager.GetSettings();
 
-            return new SessionFactoryParameters {
+            return new SessionFactoryParameters
+            {
                 Configurers = _configurers(),
                 Provider = settings.ConnectionSettings.DataProvider,
                 DataFolder = "Site",

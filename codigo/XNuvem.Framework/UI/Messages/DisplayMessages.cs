@@ -19,17 +19,20 @@ namespace XNuvem.UI.Messages
 
     public class DisplayMessages : IDisplayMessages
     {
-        private IList<MessageEntry> _entries;
+        private readonly IList<MessageEntry> _entries;
 
-        public DisplayMessages() {
+        public DisplayMessages()
+        {
             _entries = new List<MessageEntry>();
         }
 
-        public void AddMessage(MessageType type, string message) {
+        public void AddMessage(MessageType type, string message)
+        {
             _entries.Add(new MessageEntry(type, message));
         }
 
-        public IEnumerable<MessageEntry> GetMessages() {
+        public IEnumerable<MessageEntry> GetMessages()
+        {
             return _entries.ToArray();
         }
     }

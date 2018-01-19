@@ -7,22 +7,27 @@ namespace XNuvem.Mvc
     public class DoubleModelBinder : IModelBinder
     {
         public object BindModel(ControllerContext controllerContext,
-                                ModelBindingContext bindingContext) {
-            ValueProviderResult valueResult = bindingContext.ValueProvider
+            ModelBindingContext bindingContext)
+        {
+            var valueResult = bindingContext.ValueProvider
                 .GetValue(bindingContext.ModelName);
-            ModelState modelState = new ModelState { Value = valueResult };
+            var modelState = new ModelState {Value = valueResult};
             object actualValue = null;
-            try {
-                try {
+            try
+            {
+                try
+                {
                     actualValue = Convert.ToDouble(valueResult.AttemptedValue,
                         CultureInfo.InvariantCulture);
                 }
-                catch (FormatException) {
+                catch (FormatException)
+                {
                     actualValue = Convert.ToDouble(valueResult.AttemptedValue,
                         CultureInfo.CurrentCulture);
                 }
             }
-            catch (FormatException e) {
+            catch (FormatException e)
+            {
                 modelState.Errors.Add(e);
             }
 

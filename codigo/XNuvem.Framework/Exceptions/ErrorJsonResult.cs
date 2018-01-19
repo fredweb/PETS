@@ -6,14 +6,16 @@ namespace XNuvem.Exceptions
 {
     public class ErrorJsonResult : JsonResult
     {
-        public ErrorJsonResult(Exception exception) {
+        public ErrorJsonResult(Exception exception)
+        {
             var errors = new List<string>();
             var ex = exception;
-            do {
+            do
+            {
                 errors.Add(ex.Message);
                 ex = ex.InnerException;
             } while (ex != null);
-            Data = new { @IsError = true, Messages = errors };
+            Data = new {IsError = true, Messages = errors};
             JsonRequestBehavior = JsonRequestBehavior.AllowGet;
         }
     }

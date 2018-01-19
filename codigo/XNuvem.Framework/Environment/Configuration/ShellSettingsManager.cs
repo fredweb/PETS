@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
@@ -21,22 +21,23 @@ namespace XNuvem.Environment.Configuration
         private const string SettingsFile = "xnuvem-settings.xml";
         private const string GeneralSettingsFile = "xnuvem-app-settings.xml";
         private const string CSConnectionStringKey = "XNuvem";
+        private readonly IAppDataFolder _appDataFolder;
         private ShellSettings _settings;
-        private IAppDataFolder _appDataFolder;
 
-        public ILogger Logger { get; set; }
-
-        public ShellSettingsManager(IAppDataFolder appDataFolder) {
+        public ShellSettingsManager(IAppDataFolder appDataFolder)
+        {
             _settings = null;
             _appDataFolder = appDataFolder;
             Logger = NullLogger.Instance;
         }
 
-        public ShellSettings GetSettings() {
-            lock (this) {
-                if (_settings != null) {
-                    return _settings;
-                }
+        public ILogger Logger { get; set; }
+
+        public ShellSettings GetSettings()
+        {
+            lock (this)
+            {
+                if (_settings != null) return _settings;
 
                 Logger.Debug("Loading shell configurations");
 
@@ -45,7 +46,8 @@ namespace XNuvem.Environment.Configuration
                 var entities = GetShellEntities(entitiesMaps);
                 var generalSettings = GetGeneralSettings();
 
-                _settings = new ShellSettings() {
+                _settings = new ShellSettings
+                {
                     ConnectionSettings = connectionSettings,
                     Entities = entities,
                     EntityMaps = entitiesMaps
@@ -57,7 +59,8 @@ namespace XNuvem.Environment.Configuration
             return _settings;
         }
 
-        public IEnumerable<Permission> GetPermissions() {
+        public IEnumerable<Permission> GetPermissions()
+        {
             var permissionProviders = AppDomain.CurrentDomain.GetAssemblies()
                 .Where(a => !a.IsDynamic)
                 .SelectMany(a => a.GetExportedTypes())
@@ -65,24 +68,29 @@ namespace XNuvem.Environment.Configuration
                 .ToList();
 
             var list = new List<Permission>();
-            foreach (var provider in permissionProviders) {
-                var providerInstance = (IPermissionProvider)Activator.CreateInstance(provider);
+            foreach (var provider in permissionProviders)
+            {
+                var providerInstance = (IPermissionProvider) Activator.CreateInstance(provider);
                 list.AddRange(providerInstance.GetPermissions());
             }
 
             return list.ToArray();
         }
 
-        public void StoreSettings(ShellSettings settings) {
+        public void StoreSettings(ShellSettings settings)
+        {
             Logger.Debug("Storing configuration settings.");
-            lock (this) {
+            lock (this)
+            {
                 var connectionSettings = settings.ConnectionSettings;
-                using (var stream = _appDataFolder.CreateFile(SettingsFile)) {
+                using (var stream = _appDataFolder.CreateFile(SettingsFile))
+                {
                     var serializer = new XmlSerializer(typeof(ConnectionSettings));
                     serializer.Serialize(stream, connectionSettings);
                 }
                 var generalSettings = new GeneralSettingsHelper(settings.GeneralSettings);
-                using (var stream = _appDataFolder.CreateFile(GeneralSettingsFile)) {
+                using (var stream = _appDataFolder.CreateFile(GeneralSettingsFile))
+                {
                     var serializer = new XmlSerializer(typeof(GeneralSettingsHelper));
                     serializer.Serialize(stream, generalSettings);
                 }
@@ -90,39 +98,39 @@ namespace XNuvem.Environment.Configuration
             }
         }
 
-        public bool HasConfigurationFile() {
+        public bool HasConfigurationFile()
+        {
             return _appDataFolder.FileExists(SettingsFile);
         }
 
-        internal ConnectionSettings GetConnectionSettings() {
+        internal ConnectionSettings GetConnectionSettings()
+        {
             ConnectionSettings settings = null;
-            if (_appDataFolder.FileExists(SettingsFile)) {
-                using (var stream = _appDataFolder.OpenFile(SettingsFile)) {
+            if (_appDataFolder.FileExists(SettingsFile))
+                using (var stream = _appDataFolder.OpenFile(SettingsFile))
+                {
                     var serializer = new XmlSerializer(typeof(ConnectionSettings));
                     settings = serializer.Deserialize(stream) as ConnectionSettings;
                 }
-            }
-            if (settings == null) {
-                settings = new ConnectionSettings();
-            }
+            if (settings == null) settings = new ConnectionSettings();
             return settings;
         }
 
-        internal GeneralSettingsHelper GetGeneralSettings() {
+        internal GeneralSettingsHelper GetGeneralSettings()
+        {
             GeneralSettingsHelper settings = null;
-            if (_appDataFolder.FileExists(GeneralSettingsFile)) {
-                using (var stream = _appDataFolder.OpenFile(GeneralSettingsFile)) {
+            if (_appDataFolder.FileExists(GeneralSettingsFile))
+                using (var stream = _appDataFolder.OpenFile(GeneralSettingsFile))
+                {
                     var serializer = new XmlSerializer(typeof(GeneralSettingsHelper));
                     settings = serializer.Deserialize(stream) as GeneralSettingsHelper;
                 }
-            }
-            if (settings == null) {
-                settings = new GeneralSettingsHelper();
-            }
+            if (settings == null) settings = new GeneralSettingsHelper();
             return settings;
         }
 
-        internal IList<Type> GetShellEntityMaps() {
+        internal IList<Type> GetShellEntityMaps()
+        {
             return AppDomain.CurrentDomain.GetAssemblies()
                 //.Where(a => a.FullName.StartsWith("XNuvem.")) //Aumenta a performance
                 .Where(a => !a.IsDynamic && !a.GlobalAssemblyCache)
@@ -131,18 +139,20 @@ namespace XNuvem.Environment.Configuration
                 .ToList();
         }
 
-        internal IList<Type> GetShellEntities(IList<Type> entityMaps) {
+        internal IList<Type> GetShellEntities(IList<Type> entityMaps)
+        {
             //The Type.BaseType is a EntityMap<T>, return all types of T
             return entityMaps.Select(t => t.BaseType.GetGenericArguments().First()).ToList();
-        }        
+        }
 
-        internal bool IsMappingOf<T>(Type type) {
+        internal bool IsMappingOf<T>(Type type)
+        {
             return !type.IsInterface && !type.IsGenericType && typeof(T).IsAssignableFrom(type);
         }
 
-        internal bool IsTypeOf<T>(Type type) {
+        internal bool IsTypeOf<T>(Type type)
+        {
             return !type.IsInterface && typeof(T).IsAssignableFrom(type);
         }
-
     }
 }

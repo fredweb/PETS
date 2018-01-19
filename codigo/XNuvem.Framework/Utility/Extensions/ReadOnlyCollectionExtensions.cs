@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  *
  * Este código faz parte do Orchard e é livre para distribuição
@@ -17,7 +17,8 @@ namespace XNuvem.Utility.Extensions
 {
     public static class ReadOnlyCollectionExtensions
     {
-        public static IList<T> ToReadOnlyCollection<T>(this IEnumerable<T> enumerable) {
+        public static IList<T> ToReadOnlyCollection<T>(this IEnumerable<T> enumerable)
+        {
             return new ReadOnlyCollection<T>(enumerable.ToList());
         }
     }

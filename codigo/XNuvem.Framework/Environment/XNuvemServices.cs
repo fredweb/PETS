@@ -1,37 +1,38 @@
-﻿using Autofac;
+﻿using System.Web;
+using Autofac;
 using Autofac.Integration.Owin;
 using Microsoft.Owin;
-using System.Web;
 
 namespace XNuvem.Environment
 {
     public class XNuvemServices : IServiceContext
     {
-        public static IServiceContext Current {
-            get {
-                return new XNuvemServices(HttpContext.Current.GetOwinContext());
-            }
-        }
-
         private readonly IOwinContext _owinContext;
-        public XNuvemServices(IOwinContext context) {
+
+        public XNuvemServices(IOwinContext context)
+        {
             _owinContext = context;
         }
 
-        private ILifetimeScope Services {
-            get { return _owinContext.GetAutofacLifetimeScope(); }
-        }
-        public TService Resolve<TService>() {
+        public static IServiceContext Current => new XNuvemServices(HttpContext.Current.GetOwinContext());
+
+        private ILifetimeScope Services => _owinContext.GetAutofacLifetimeScope();
+
+        public TService Resolve<TService>()
+        {
             return Services.Resolve<TService>();
         }
 
-        public bool TryResolve<TService>(out TService service) {
+        public bool TryResolve<TService>(out TService service)
+        {
             service = default(TService);
-            try {
+            try
+            {
                 service = Services.Resolve<TService>();
                 return true;
             }
-            catch {
+            catch
+            {
                 return false;
             }
         }

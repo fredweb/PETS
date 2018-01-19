@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  *
  * Este código faz parte do Orchard e é livre para distribuição
@@ -8,23 +8,28 @@
  * 
 /****************************************************************************************/
 
-using log4net;
-using log4net.Util;
 using System;
 using System.Globalization;
+using log4net;
+using log4net.Util;
 
 namespace XNuvem.Logging
 {
     public class Log4netLogger : ILogger
     {
-        private ILog _log;
         private Log4netFactory _factory;
-        public Log4netLogger(ILog log, Log4netFactory factory) {
+        private readonly ILog _log;
+
+        public Log4netLogger(ILog log, Log4netFactory factory)
+        {
             _log = log;
             _factory = factory;
         }
-        public bool IsEnabled(LogLevel level) {
-            switch (level) {
+
+        public bool IsEnabled(LogLevel level)
+        {
+            switch (level)
+            {
                 case LogLevel.Debug:
                     return _log.IsDebugEnabled;
                 case LogLevel.Error:
@@ -39,10 +44,12 @@ namespace XNuvem.Logging
             return false;
         }
 
-        public void Log(LogLevel level, Exception exception, string format, params object[] args) {
-            if (IsEnabled(level)) {
-                if (args == null) {                    
-                    switch (level) {
+        public void Log(LogLevel level, Exception exception, string format, params object[] args)
+        {
+            if (IsEnabled(level))
+                if (args == null)
+                    switch (level)
+                    {
                         case LogLevel.Debug:
                             _log.Debug(format, exception);
                             break;
@@ -58,10 +65,10 @@ namespace XNuvem.Logging
                         case LogLevel.Warning:
                             _log.Warn(format, exception);
                             break;
-                    }                    
-                }
-                else {
-                    switch (level) {
+                    }
+                else
+                    switch (level)
+                    {
                         case LogLevel.Debug:
                             _log.Debug(new SystemStringFormat(CultureInfo.InvariantCulture, format, args), exception);
                             break;
@@ -78,8 +85,6 @@ namespace XNuvem.Logging
                             _log.Warn(new SystemStringFormat(CultureInfo.InvariantCulture, format, args), exception);
                             break;
                     }
-                }
-            }
         }
     }
 }

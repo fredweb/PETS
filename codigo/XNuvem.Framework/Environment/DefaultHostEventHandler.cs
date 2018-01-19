@@ -2,12 +2,12 @@
 {
     public class DefaultHostEventHandler : IHostEvents
     {
-        public void OnInitialize() {
-            
+        public void OnInitialize()
+        {
         }
 
-        public void OnTerminate() {
-            
+        public void OnTerminate()
+        {
         }
     }
 }

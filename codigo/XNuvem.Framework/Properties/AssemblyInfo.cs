@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Web;
+using XNuvem.Environment;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -37,4 +38,4 @@ using System.Web;
 
 // Possibilita o load dos assemblies no mesmo AppDomain para reconhecimento dos
 // Controllers
-[assembly: PreApplicationStartMethod(typeof(XNuvem.Environment.PreApplicationStarter), "Start")]
+[assembly: PreApplicationStartMethod(typeof(PreApplicationStarter), "Start")]

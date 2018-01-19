@@ -1,12 +1,12 @@
-﻿using System.Web.Optimization;
+﻿using System.Web;
+using System.Web.Optimization;
 
 namespace XNuvem.Web
 {
     public class BundleConfig
     {
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
-        public static void RegisterBundles(BundleCollection bundles)
-        {
+        public static void RegisterBundles(BundleCollection bundles) {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -23,19 +23,17 @@ namespace XNuvem.Web
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/font-awesome-4.4.0/css/font-awesome.css",
                       "~/Content/bootstrap.css",
-                      "~/Content/plugins/select2/select2.min.css",
-                      "~/Content/plugins/font-awesome/css/font-awesome.min.css",
-                      "~/Content/plugins/Ionicons/css/ionicons.min.css",
-                      "~/Content/plugins/iCheck/square/blue.css"
+                      "~/Content/plugins/select2/select2.min.css"
                       ));
 
-            bundles.Add(new StyleBundle("~/css/app").Include(
+            bundles.Add(new StyleBundle("~/css/app").Include(                      
                       "~/Content/dist/css/AdminLTE.css",
                       "~/Content/dist/css/skins/_all-skins.css",
                       "~/Content/Site.css"
                       ));
-
+            
             bundles.Add(new StyleBundle("~/css/dataTable").Include(
                 "~/Content/plugins/datatables-1.10/datatables.min.css",
                 "~/Content/plugins/datatables-1.10/Responsive-2.0.2/css/responsive.dataTables.min.css",
@@ -47,8 +45,7 @@ namespace XNuvem.Web
             bundles.Add(new ScriptBundle("~/bundles/adminlte").Include(
                       "~/Content/plugins/slimScroll/jquery.slimscroll.min.js",
                       "~/Content/plugins/fastclick/fastclick.min.js",
-                      "~/Scripts/plugins/iCheck/icheck.js",
-                      ""));
+                      "~/Content/dist/js/app.min.js"));
 
             bundles.Add(new ScriptBundle("~/js/dataTable").Include(
                 "~/Content/plugins/datatables-1.10/datatables.min.js",

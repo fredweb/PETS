@@ -1,32 +1,33 @@
 ﻿using System;
 using XNuvem.Data;
 using XNuvem.Logging;
-using XNuvem.UI.Messages;
 
 namespace XNuvem.Exceptions
 {
     public class DefaultPolicyException : IPolicyException
     {
-        ITransactionManager _transactionManager;
+        private readonly ITransactionManager _transactionManager;
 
-        public ILogger Logger { get; set; }
-
-        public DefaultPolicyException(ITransactionManager transactionManager) {
+        public DefaultPolicyException(ITransactionManager transactionManager)
+        {
             _transactionManager = transactionManager;
             Logger = NullLogger.Instance;
         }
 
-        public bool HandleException(Exception ex) {
-            try {
+        public ILogger Logger { get; set; }
+
+        public bool HandleException(Exception ex)
+        {
+            try
+            {
                 Logger.Error(ex, "Erro inesperado ao executar uma operação");
                 Logger.Warning("Canceling transaction due to an error");
                 _transactionManager.Cancel();
-                if (ex.IsFatal()) {
-                    return false;
-                }
+                if (ex.IsFatal()) return false;
                 return true;
             }
-            catch {
+            catch
+            {
                 return false;
             }
         }

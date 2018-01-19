@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: George Santos
+ * Autor: Marvin Mendes
  * Copyright (c) 2016  
  *
  * Este código faz parte do Orchard e é livre para distribuição
@@ -12,7 +12,8 @@ using System;
 
 namespace XNuvem.Logging
 {
-    public interface ILoggerFactory {
+    public interface ILoggerFactory
+    {
         ILogger CreateLogger(Type type);
     }
 }
