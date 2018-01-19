@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
@@ -23,7 +23,7 @@ namespace XNuvem.UI.Navigation
             _menuItems.Add("", RootMenu);
         }
 
-        public MenuEntry RootMenu { get; }
+        public MenuEntry RootMenu { get; set; }
 
         public MenuEntry Add(MenuEntry menu)
         {

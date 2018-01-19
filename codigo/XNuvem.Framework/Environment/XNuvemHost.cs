@@ -22,9 +22,12 @@ namespace XNuvem.Environment
             Logger = _container.Resolve<ILoggerFactory>().CreateLogger(typeof(XNuvemHost));
         }
 
-        private ILogger Logger { get; }
+        private ILogger Logger { get; set; }
 
-        public static IXNuvemHost Current => _currentHost;
+        public static IXNuvemHost Current
+        {
+            get { return _currentHost; }
+        }
 
         TService IServiceContext.Resolve<TService>()
         {

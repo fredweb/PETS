@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.Framework", "XNuvem.Framework\XNuvem.Framework.csproj", "{8360C4B9-A8EF-437D-A962-F46EE8004B1C}"
 EndProject
@@ -17,6 +17,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{81C95156-4
 	ProjectSection(SolutionItems) = preProject
 		requisições.txt = requisições.txt
 		Docs\xnuvem-doc.txt = Docs\xnuvem-doc.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1D6F1AB5-E7EE-4C3E-A30F-93943D42C7CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.Dominio", "XNuvem.Dominio\XNuvem.Dominio.csproj", "{BF83379D-4723-40AF-8165-62ABEFD7932E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D2FD2733-4BE1-49AF-90DA-DD37EB4F9D95}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Global
@@ -37,9 +48,16 @@ Global
 		{B0443050-3179-47B7-BD39-3AEAA2563B5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0443050-3179-47B7-BD39-3AEAA2563B5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0443050-3179-47B7-BD39-3AEAA2563B5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF83379D-4723-40AF-8165-62ABEFD7932E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF83379D-4723-40AF-8165-62ABEFD7932E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF83379D-4723-40AF-8165-62ABEFD7932E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF83379D-4723-40AF-8165-62ABEFD7932E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF83379D-4723-40AF-8165-62ABEFD7932E} = {1D6F1AB5-E7EE-4C3E-A30F-93943D42C7CB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75DA920B-9F44-4B8E-A583-A802B38ED488}

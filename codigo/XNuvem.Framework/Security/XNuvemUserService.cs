@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  *
  * 
@@ -41,7 +41,10 @@ namespace XNuvem.Security
             Logger = NullLogger.Instance;
         }
 
-        public ISession Session => _transactionManager.GetSession();
+        public ISession Session
+        {
+            get { return _transactionManager.GetSession(); }
+        }
 
         public ILogger Logger { get; set; }
 
@@ -87,7 +90,10 @@ namespace XNuvem.Security
 
         #region IUserService...
 
-        UserManager<User> IUserService.UserManager => this;
+        UserManager<User> IUserService.UserManager
+        {
+            get { return this; }
+        }
 
         void IUserService.Create(User user, string password)
         {
@@ -109,7 +115,10 @@ namespace XNuvem.Security
             return this.FindByName(userName);
         }
 
-        IQueryable<User> IUserService.Users => Users;
+        IQueryable<User> IUserService.Users
+        {
+            get { return Users; }
+        }
 
         User IUserService.GetCurrentUser()
         {

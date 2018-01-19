@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  *
  * Este código faz parte do Orchard e é livre para distribuição
@@ -22,18 +22,26 @@ namespace XNuvem.FileSystems.AppData
         /// <summary>
         ///     Virtual path of root ("~/App_Data")
         /// </summary>
-        string RootPath { get; }
+        string RootPath { get; set; }
 
         /// <summary>
         ///     Physical path of root (typically: MapPath(RootPath))
         /// </summary>
-        string RootFolder { get; }
+        string RootFolder { get; set; }
     }
 
     public class AppDataFolderRoot : IAppDataFolderRoot
     {
-        public string RootPath => "~/App_Data";
+        public string RootPath
+        {
+            get { return "~/App_Data"; }
+            set { throw new System.NotImplementedException(); }
+        }
 
-        public string RootFolder => HostingEnvironment.MapPath(RootPath);
+        public string RootFolder
+        {
+            get { return HostingEnvironment.MapPath(RootPath); }
+            set { throw new System.NotImplementedException(); }
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
@@ -30,16 +30,22 @@ namespace XNuvem.UI.Navigation
         public MenuType Type { get; set; }
         public string Position { get; set; }
 
-        public int Level => GetLevelFromPosition();
+        public int Level
+        {
+            get { return GetLevelFromPosition(); }
+        }
 
-        public string Father => GetFatherFromPosition();
+        public string Father
+        {
+            get { return GetFatherFromPosition(); }
+        }
 
         public int Order { get; set; }
         public string Title { get; set; }
         public string ActionName { get; set; }
         public string ControllerName { get; set; }
         public RouteValueDictionary RouteValues { get; set; }
-        public IList<MenuEntry> Submenu { get; }
+        public IList<MenuEntry> Submenu { get; set; }
         public string ImageUrl { get; set; }
 
         public IEnumerable<MenuEntry> SubmenuOrdered

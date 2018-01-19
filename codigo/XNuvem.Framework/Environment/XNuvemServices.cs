@@ -14,9 +14,21 @@ namespace XNuvem.Environment
             _owinContext = context;
         }
 
-        public static IServiceContext Current => new XNuvemServices(HttpContext.Current.GetOwinContext());
+        public static IServiceContext Current
+        {
+            get
+            {
+                return new XNuvemServices(HttpContext.Current.GetOwinContext());
+            }
+        }
 
-        private ILifetimeScope Services => _owinContext.GetAutofacLifetimeScope();
+        private ILifetimeScope Services
+        {
+            get
+            {
+                return _owinContext.GetAutofacLifetimeScope ( );
+            }
+        } 
 
         public TService Resolve<TService>()
         {

@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  *
  * Este código faz parte do Orchard e é livre para distribuição
@@ -33,19 +33,19 @@ namespace XNuvem.Localization
             Args = args;
         }
 
-        public string Scope { get; }
+        public string Scope { get; private set; }
 
         /// <summary>
         ///     The HTML-Encoded original text
         /// </summary>
-        public string TextHint { get; }
+        public string TextHint { get; set; }
 
-        public object[] Args { get; }
+        public object[] Args { get; set; }
 
         /// <summary>
         ///     The HTML-encoded localized text
         /// </summary>
-        public string Text { get; }
+        public string Text { get; set; }
 
         string IHtmlString.ToHtmlString()
         {

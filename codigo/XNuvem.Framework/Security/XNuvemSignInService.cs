@@ -29,7 +29,10 @@ namespace XNuvem.Security
 
         #region ISignInService...
 
-        SignInManager<User, string> ISignInService.SignInManager => this;
+        SignInManager<User, string> ISignInService.SignInManager
+        {
+            get { return this; }
+        }
 
         async Task<SignInStatus> ISignInService.PasswordSignInAsync(string userName, string password, bool isPersistent,
             bool shouldLockout)

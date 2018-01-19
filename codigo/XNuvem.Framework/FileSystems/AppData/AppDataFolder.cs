@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  *
  * Este código faz parte do Orchard e é livre para distribuição
@@ -31,9 +31,17 @@ namespace XNuvem.FileSystems.AppData
 
         public ILogger Logger { get; set; }
 
-        public string RootFolder => _root.RootFolder;
+        public string RootFolder
+        {
+            get { return _root.RootFolder; }
+            set { _root.RootFolder = value; }
+        }
 
-        public string AppDataPath => _root.RootPath;
+        public string AppDataPath
+        {
+            get { return _root.RootPath; }
+            set { _root.RootPath = value; }
+        }
 
         /// <summary>
         ///     Combine a set of virtual paths into a virtual path relative to "~/App_Data"

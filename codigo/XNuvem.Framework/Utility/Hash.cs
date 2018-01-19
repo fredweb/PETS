@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  *
  * Este código faz parte do Orchard e é livre para distribuição
@@ -23,7 +23,10 @@ namespace XNuvem.Utility
     {
         private long _hash;
 
-        public string Value => _hash.ToString("x", CultureInfo.InvariantCulture);
+        public string Value
+        {
+            get { return _hash.ToString("x", CultureInfo.InvariantCulture); }
+        }
 
         public override string ToString()
         {

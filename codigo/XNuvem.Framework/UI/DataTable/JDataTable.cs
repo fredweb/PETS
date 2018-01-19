@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
@@ -29,7 +29,7 @@ namespace XNuvem.UI.DataTable
         public ILogger Logger { get; set; }
         public string OrderByColumn { get; set; }
 
-        public IRepository<TEntity> DataSource { get; }
+        public IRepository<TEntity> DataSource { get; set; }
 
         public string DefaultOrderColumn { get; set; }
         public int Draw { get; set; }
@@ -64,8 +64,7 @@ namespace XNuvem.UI.DataTable
 
         public DataTableResult Execute<TResult>(Func<IQueryable<TEntity>, IQueryable<TResult>> beforeExecute)
         {
-            var result = new DataTableResult();
-            result.draw = Draw;
+            var result = new DataTableResult {draw = Draw};
             var query = DataSource.Table;
             try
             {

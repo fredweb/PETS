@@ -1,6 +1,6 @@
 ﻿/****************************************************************************************
  *
- * Autor: Marvin Mendes
+ * Autor: George Santos
  * Copyright (c) 2016  
  * 
 /****************************************************************************************/
@@ -29,9 +29,15 @@ namespace XNuvem.Data
 
         public ILogger Logger { get; set; }
 
-        protected virtual ISession Session => _transactionManager.GetSession();
+        protected virtual ISession Session
+        {
+            get { return _transactionManager.GetSession(); }
+        }
 
-        public virtual IQueryable<T> Table => Session.Query<T>().Cacheable();
+        public virtual IQueryable<T> Table
+        {
+            get { return Session.Query<T>().Cacheable(); }
+        }
 
         public virtual T Get(int id)
         {
@@ -160,7 +166,10 @@ namespace XNuvem.Data
             return Get(predicate);
         }
 
-        IQueryable<T> IRepository<T>.Table => Table;
+        IQueryable<T> IRepository<T>.Table
+        {
+            get { return Table; }
+        }
 
         int IRepository<T>.Count(Expression<Func<T, bool>> predicate)
         {

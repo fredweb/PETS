@@ -7,7 +7,7 @@ namespace XNuvem.Linq
 {
     /// <summary>
     ///     See: http://www.albahari.com/nutshell/predicatebuilder.aspx
-    ///     Update by Marvin Mendes base on
+    ///     Update by George Santos base on
     ///     http://www.codeproject.com/Articles/493917/Dynamic-Querying-with-LINQ-to-Entities-and-Express
     /// </summary>
     public static class PredicateBuilder
