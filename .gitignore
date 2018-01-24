@@ -2,3 +2,4 @@
 /codigo/.nuget/*.exe
 /codigo/.nuget/*.targets
 /codigo/XNuvem.Dominio/obj/Debug
+/codigo/XNuvem.Dominio/bin/Debug
