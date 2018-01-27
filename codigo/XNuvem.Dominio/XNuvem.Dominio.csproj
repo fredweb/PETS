@@ -54,8 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidade\AnimalRecord.cs" />
     <Compile Include="Entidade\ClienteRecorde.cs" />
     <Compile Include="Entidade\EspecieRecord.cs" />
+    <Compile Include="Entidade\RacaRecord.cs" />
+    <Compile Include="Entidade\SexoAnimalRecord.cs" />
+    <Compile Include="Entidade\SexoRecord.cs" />
     <Compile Include="Entidade\TipoDocumentoRecord.cs" />
     <Compile Include="Infra\DbConnectionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -15,11 +15,11 @@ namespace XNuvem.Dominio.Entidade
     {
         public ClienteMap()
         {
-            Table("Cliente");
-            Id(w => w.Id).Column("SQCLIENTE").GeneratedBy.Identity();
+            Table("CLIENTE");
+            Id(w => w.Id).Column("IDCLIENTE").GeneratedBy.Increment();
             Map(m => m.Nome).Column("MNNOME").Length(500).Not.Nullable();
             Map(m => m.DtNascimento).Column("DTNASCIMENTO").Not.Nullable();
-            Map(m => m.SexoId).Column("SQSEXO").Not.Nullable();
+            Map(m => m.SexoId).Column("IDSEXO").Not.Nullable();
         }
     }
 }

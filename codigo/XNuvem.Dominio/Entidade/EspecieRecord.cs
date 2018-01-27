@@ -14,7 +14,7 @@ namespace XNuvem.Dominio.Entidade
         public EspecieMap()
         {
             Table("ESPECIEANIMAL");
-            Id(i => i.Id).Column("SQESPECIE").GeneratedBy.Identity();
+            Id(i => i.Id).Column("IDESPECIE").GeneratedBy.Increment();
             Map(m => m.Nome).Column("NMNOME").Length(500).Not.Nullable();
             Map(m => m.Sigla).Column("SGESPECIE").Length(5).Not.Nullable();
         }
