@@ -30,6 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D2FD27
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportViewBase", "ReportViewBase\ReportViewBase.csproj", "{3F07415B-499B-41BE-A420-DD7EA3DAAEEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,12 +54,17 @@ Global
 		{BF83379D-4723-40AF-8165-62ABEFD7932E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF83379D-4723-40AF-8165-62ABEFD7932E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF83379D-4723-40AF-8165-62ABEFD7932E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F07415B-499B-41BE-A420-DD7EA3DAAEEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F07415B-499B-41BE-A420-DD7EA3DAAEEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F07415B-499B-41BE-A420-DD7EA3DAAEEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F07415B-499B-41BE-A420-DD7EA3DAAEEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BF83379D-4723-40AF-8165-62ABEFD7932E} = {1D6F1AB5-E7EE-4C3E-A30F-93943D42C7CB}
+		{3F07415B-499B-41BE-A420-DD7EA3DAAEEB} = {1D6F1AB5-E7EE-4C3E-A30F-93943D42C7CB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75DA920B-9F44-4B8E-A583-A802B38ED488}

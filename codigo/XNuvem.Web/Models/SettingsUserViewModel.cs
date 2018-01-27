@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace XNuvem.Web.Models
 {
@@ -12,9 +8,9 @@ namespace XNuvem.Web.Models
 
         [Required]
         [MaxLength(100)]
-        [Display(Name = "Login", Description="Nome usado para efetuar o login")]
+        [Display(Name = "Login", Description = "Nome usado para efetuar o login")]
         public string UserName { get; set; }
-        
+
         [MaxLength(100)]
         [Display(Name = "Nome completo")]
         public string FullName { get; set; }
@@ -36,22 +32,16 @@ namespace XNuvem.Web.Models
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name="Vendedor", Description="Nenhum vendedor para não ter restrição de vendedor")]
+        [Display(Name = "Vendedor", Description = "Nenhum vendedor para não ter restrição de vendedor")]
         public int SlpCode { get; set; }
 
-        [Display(Name="Nome vendedor")]
-        public string SlpName { get; set; }
+        [Display(Name = "Nome vendedor")] public string SlpName { get; set; }
 
-        [Display(Name="OK Alimentos")]
-        public bool QryGroup60 { get; set; }
+        [Display(Name = "OK Alimentos")] public bool QryGroup60 { get; set; }
 
-        [Display(Name = "X'TOSO")]
-        public bool QryGroup61 { get; set; }
+        [Display(Name = "X'TOSO")] public bool QryGroup61 { get; set; }
 
-        [Display(Name = "Sabor da Bahia")]
-        public bool QryGroup62 { get; set; }
-
-
+        [Display(Name = "Sabor da Bahia")] public bool QryGroup62 { get; set; }
     }
 
     public class ChangePasswordViewModel

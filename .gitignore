@@ -3,3 +3,5 @@
 /codigo/.nuget/*.targets
 /codigo/XNuvem.Dominio/obj/Debug
 /codigo/XNuvem.Dominio/bin/Debug
+/codigo/ReportViewBase/obj
+/codigo/ReportViewBase/bin
