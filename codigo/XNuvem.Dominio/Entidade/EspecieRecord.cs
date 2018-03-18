@@ -1,12 +1,13 @@
-﻿using XNuvem.Data;
+﻿using System.Collections.Generic;
+using XNuvem.Data;
 
 namespace XNuvem.Dominio.Entidade
 {
-    public class EspecieRecord
+    public class EspecieRecord:BaseEntity
     {
-        public virtual long Id { get; set; }
         public virtual string Nome { get; set; }
         public virtual string Sigla { get; set; }
+        public virtual ICollection<RacaRecord> Racas {get;set;}
     }
 
     public class EspecieMap : EntityMap<EspecieRecord>

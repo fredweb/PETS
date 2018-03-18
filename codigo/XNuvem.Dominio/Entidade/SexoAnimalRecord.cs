@@ -11,12 +11,12 @@ namespace XNuvem.Dominio.Entidade
 
     public class SexoAnimalMap : EntityMap<SexoAnimalRecord>
     {
-        public SexoAnimalMap()
+        public SexoAnimalMap ( )
         {
-            Table("SEXOANIMAL");
-            Id(i => i.Id).Column("IDANIMAL").GeneratedBy.Increment();
-            Map(m => m.Nome).Column("NMSEXOANIMAL").Length(10).Not.Nullable();
-            Map(m => m.Sigla).Column("SGSEXOANIMAL").Length(1).Not.Nullable();
+            Table ( "SEXOANIMAL" );
+            Id ( i => i.Id ).Column ( "IDANIMAL" ).GeneratedBy.Increment ( );
+            Map ( m => m.Nome ).Column ( "NMSEXOANIMAL" ).Length ( 10 ).Not.Nullable ( );
+            Map ( m => m.Sigla ).Column ( "SGSEXOANIMAL" ).Length ( 1 ).Not.Nullable ( );
         }
     }
 }
