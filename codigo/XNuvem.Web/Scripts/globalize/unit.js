@@ -1,5 +1,5 @@
 /**
- * Globalize v1.1.2
+ * Globalize v1.3.0
  *
  * http://github.com/jquery/globalize
  *
@@ -7,10 +7,10 @@
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2016-11-08T12:09Z
+ * Date: 2017-07-03T21:37Z
  */
 /*!
- * Globalize v1.1.2 2016-11-08T12:09Z Released under the MIT license
+ * Globalize v1.3.0 2017-07-03T21:37Z Released under the MIT license
  * http://git.io/TrdQbw
  */
 (function( root, factory ) {
@@ -28,7 +28,7 @@
 	} else if ( typeof exports === "object" ) {
 
 		// Node, CommonJS
-		module.exports = factory( require( "cldrjs" ), require( "globalize" ) );
+		module.exports = factory( require( "cldrjs" ), require( "../globalize" ) );
 	} else {
 
 		// Extend global
