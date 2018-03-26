@@ -11,12 +11,12 @@ namespace XNuvem.Dominio.Entidade
 
     public class TipoDocumentoMap : EntityMap<TipoDocumentoRecord>
     {
-        public TipoDocumentoMap()
+        public TipoDocumentoMap ( )
         {
-            Table("TIPODOCUMENTO");
-            Id(i => i.Id).Column("IDTIPODOCUMENTO").GeneratedBy.Increment();
-            Map(m => m.Nome).Column("NMNOME").Length(500).Not.Nullable();
-            Map(m => m.Sigla).Column("SGTIPODOCUMENTO").Length(4).Not.Nullable();
+            Table ( "TIPODOCUMENTO" );
+            Id ( i => i.Id ).Column ( "IDTIPODOCUMENTO" ).GeneratedBy.Increment ( );
+            Map ( m => m.Nome ).Column ( "NMNOME" ).Length ( 500 ).Not.Nullable ( );
+            Map ( m => m.Sigla ).Column ( "SGTIPODOCUMENTO" ).Length ( 4 ).Not.Nullable ( );
         }
     }
 }
