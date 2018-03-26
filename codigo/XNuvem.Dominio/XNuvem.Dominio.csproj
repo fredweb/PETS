@@ -61,6 +61,7 @@
     <Compile Include="Entidade\EspecieRecord.cs" />
     <Compile Include="Entidade\MaterialRecord.cs" />
     <Compile Include="Entidade\RacaRecord.cs" />
+    <Compile Include="Entidade\ServicoRecord.cs" />
     <Compile Include="Entidade\SexoAnimalRecord.cs" />
     <Compile Include="Entidade\SexoRecord.cs" />
     <Compile Include="Entidade\TipoDocumentoRecord.cs" />

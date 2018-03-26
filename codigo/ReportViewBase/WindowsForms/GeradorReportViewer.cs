@@ -197,7 +197,7 @@ namespace ReportViewBase.WindowsForms
                 string extension;
                 var format = ReportFormat2String(_reportFormat);
 
-                output = reportViewer.ServerReport.Render(
+                reportViewer.ServerReport.Render(
                     format,
                     "<DeviceInfo></DeviceInfo>",
                     null,
