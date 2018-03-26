@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
-using System.Web.UI;
-using Microsoft.Reporting.WinForms;
 using ReportViewBase.Base.Enum;
 using ReportViewBase.Base.Exception;
 using ReportViewBase.Base.Interfases;
 using ReportViewBase.Base.Utils;
-using ReportViewBase.WindowsForms.Extensions;
 using ReportViewBase.WindowsForms.Util;
+using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Web.UI;
+using ReportViewBase.WindowsForms.Extensions;
 
 namespace ReportViewBase.WindowsForms
 {
     public class GeradorReportViewer : IGeradorReportViewer
     {
+        private readonly Formato _reportFormat;
         private readonly ReportViewParamenters _viewerParameters;
 
         public GeradorReportViewer(
@@ -81,7 +82,7 @@ namespace ReportViewBase.WindowsForms
             string filename = null,
             string eventsHandlerType = null,
             Stream embeddedResourceStream = null,
-            string embeddedResourcePath = null )
+            string embeddedResourcePath = null)
             : this(reportFormat,
                 reportPath,
                 null,
@@ -95,7 +96,7 @@ namespace ReportViewBase.WindowsForms
                 filename,
                 eventsHandlerType,
                 embeddedResourceStream,
-                embeddedResourcePath )
+                embeddedResourcePath)
         {
         }
 
@@ -113,7 +114,7 @@ namespace ReportViewBase.WindowsForms
             string filename = null,
             string eventsHandlerType = null,
             Stream embeddedResourceStream = null,
-            string embeddedResourcePath = null )
+            string embeddedResourcePath = null)
             : this(
                 reportFormat,
                 reportPath,
@@ -128,7 +129,7 @@ namespace ReportViewBase.WindowsForms
                 filename,
                 eventsHandlerType,
                 embeddedResourceStream,
-                embeddedResourcePath )
+                embeddedResourcePath)
         {
         }
 
@@ -158,15 +159,13 @@ namespace ReportViewBase.WindowsForms
             if (mode == ModoProcessamento.Local)
                 _viewerParameters.ProcessingMode = ProcessingMode.Local;
             else if (mode == ModoProcessamento.Remote)
-            {
                 _viewerParameters.ProcessingMode = ProcessingMode.Remote;
-            }
 
-            if ( mode == ModoProcessamento.Local && localReportDataSources != null )
+            if (mode == ModoProcessamento.Local && localReportDataSources != null)
                 _viewerParameters.LocalReportDataSources = localReportDataSources;
-            else if ( mode == ModoProcessamento.Local && localReportEnumerable != null )
+            else if (mode == ModoProcessamento.Local && localReportEnumerable != null)
                 _viewerParameters.LocalReportDatasourceEnumerable = localReportEnumerable;
-            else if ( mode == ModoProcessamento.Local && localReportUiDataSource != null )
+            else if (mode == ModoProcessamento.Local && localReportUiDataSource != null)
                 _viewerParameters.LocalReportIDataSource = localReportUiDataSource;
 
             _viewerParameters.EmbeddedResourceStream = embeddedResourceStream;
@@ -177,13 +176,9 @@ namespace ReportViewBase.WindowsForms
             ParseParameters(reportParameters);
         }
 
-        public ReportViewerParameters ViewerParameters
-        {
-            get { return _viewerParameters; }
-        }
+        public ReportViewerParameters ViewerParameters => _viewerParameters;
 
-        private readonly Formato _reportFormat;
-        public string Filename { get; private set; }
+        public string Filename { get; }
         public string MimeType { get; private set; }
         public string Extension { get; private set; }
 

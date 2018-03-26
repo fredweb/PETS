@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using ReportViewBase.WindowsForms.Util;
 using Microsoft.Reporting.WinForms;
 using ReportViewBase.Base.Exception;
 using ReportViewBase.Base.Utils;
 using ReportViewBase.WindowsForms.Interfases;
+using ReportViewBase.WindowsForms.Util;
 
 namespace ReportViewBase.WindowsForms.Extensions
 {
@@ -35,15 +35,16 @@ namespace ReportViewBase.WindowsForms.Extensions
                 localReport.ReportPath = parameters.LocalPath;
             else
                 localReport.LoadReportDefinition(parameters.EmbeddedResourceStream);
-            if (parameters.ControlSettings!=null && parameters.ControlSettings.UseCurrentAppDomainPermissionSet != null &&
+            if (parameters.ControlSettings != null &&
+                parameters.ControlSettings.UseCurrentAppDomainPermissionSet != null &&
                 parameters.ControlSettings.UseCurrentAppDomainPermissionSet.Value)
                 localReport.SetBasePermissionsForSandboxAppDomain(AppDomain.CurrentDomain.PermissionSet.Copy());
 
-            if (parameters.ControlSettings!=null && parameters.ControlSettings.EnableExternalImages != null &&
+            if (parameters.ControlSettings != null && parameters.ControlSettings.EnableExternalImages != null &&
                 parameters.ControlSettings.EnableExternalImages.Value)
                 localReport.EnableExternalImages = true;
 
-            if (parameters.ControlSettings!=null &&parameters.ControlSettings.EnableHyperlinks != null &&
+            if (parameters.ControlSettings != null && parameters.ControlSettings.EnableHyperlinks != null &&
                 parameters.ControlSettings.EnableHyperlinks.Value)
                 localReport.EnableHyperlinks = true;
 
@@ -77,12 +78,15 @@ namespace ReportViewBase.WindowsForms.Extensions
             if (string.IsNullOrEmpty(eventsHandlerType)) return null;
 
             var handlersType = Type.GetType(eventsHandlerType);
-            if (handlersType == null) throw new ReportException(string.Format("Type {0} is not found",eventsHandlerType));
+            if (handlersType == null)
+                throw new ReportException(string.Format("Type {0} is not found", eventsHandlerType));
 
             var handlers = Activator.CreateInstance(handlersType) as IReportViewerEventsHandler;
             if (handlers == null)
                 throw new ReportException(
-                    string.Format ( "Type {0} has not implemented IReportViewerEventsHandler interface or cannot be instantiated.", eventsHandlerType ) );
+                    string.Format(
+                        "Type {0} has not implemented IReportViewerEventsHandler interface or cannot be instantiated.",
+                        eventsHandlerType));
 
             return handlers;
         }

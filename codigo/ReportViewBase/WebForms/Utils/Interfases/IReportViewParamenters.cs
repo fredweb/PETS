@@ -9,7 +9,7 @@ namespace ReportViewBase.WebForms.Utils.Interfases
 {
     public interface IReportViewParamenters
     {
-        DataSourceCredentials [ ] DataSourceCredentials { get; set; }
+        DataSourceCredentials[] DataSourceCredentials { get; set; }
         ProcessingMode ProcessingMode { get; set; }
         IDictionary<string, ReportParameter> ReportParameters { get; set; }
         IDictionary<string, DataTable> LocalReportDataSources { get; set; }

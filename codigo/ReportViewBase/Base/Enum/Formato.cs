@@ -1,11 +1,5 @@
 ﻿namespace ReportViewBase.Base.Enum
 {
-    public enum Plataforma
-    {
-        WebForms,
-        WindowsForm
-    }
-
     public enum Formato
     {
         Excel,
@@ -19,10 +13,5 @@
         Rgdi,
         Rpl,
         Html
-    }
-    public enum ModoProcessamento
-    {
-        Local = 0,
-        Remote = 1,
     }
 }

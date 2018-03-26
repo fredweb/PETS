@@ -2,14 +2,14 @@
 
 namespace ReportViewBase.Base.Utils
 {
-    [AttributeUsage ( AttributeTargets.Property )]
+    [AttributeUsage(AttributeTargets.Property)]
     public class UriParameterAttribute : Attribute
     {
-        public UriParameterAttribute ( string name )
+        public UriParameterAttribute(string name)
         {
             Name = name;
         }
 
-        public string Name { get; private set; }
+        public string Name { get; }
     }
 }

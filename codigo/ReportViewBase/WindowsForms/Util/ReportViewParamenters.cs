@@ -10,12 +10,12 @@ namespace ReportViewBase.WindowsForms.Util
 {
     public class ReportViewParamenters : ReportViewerParameters
     {
-        public ReportViewParamenters ( )
+        public ReportViewParamenters()
         {
-            ReportParameters = new Dictionary<string, ReportParameter> ( );
+            ReportParameters = new Dictionary<string, ReportParameter>();
         }
 
-        public DataSourceCredentials [ ] DataSourceCredentials { get; set; }
+        public DataSourceCredentials[] DataSourceCredentials { get; set; }
         public IDictionary<string, ReportParameter> ReportParameters { get; set; }
         public IDictionary<string, DataTable> LocalReportDataSources { get; set; }
         public IDictionary<string, IEnumerable> LocalReportDatasourceEnumerable { get; set; }

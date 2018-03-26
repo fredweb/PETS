@@ -7,7 +7,7 @@ namespace ReportViewBase.Base.Interfases
         string Extension { get; }
         string Filename { get; }
         string MimeType { get; }
-        byte [ ] GetByteReport ( );
-        Stream GetStreamReport ( );
+        byte[] GetByteReport();
+        Stream GetStreamReport();
     }
 }

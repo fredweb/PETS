@@ -4,13 +4,14 @@ using System.Data;
 using System.IO;
 using System.Web.UI;
 using Microsoft.Reporting.WebForms;
+using ReportViewBase.Base.Utils;
 using ReportViewBase.WebForms.Utils.Interfases;
 
 namespace ReportViewBase.WebForms.Utils
 {
-    public class ReportViewParamenters : Base.Utils.ReportViewerParameters, IReportViewParamenters
+    public class ReportViewParamenters : ReportViewerParameters, IReportViewParamenters
     {
-        public ReportViewParamenters ( )
+        public ReportViewParamenters()
         {
             ReportParameters = new Dictionary<string, ReportParameter>();
         }
