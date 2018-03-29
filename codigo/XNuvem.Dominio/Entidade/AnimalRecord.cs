@@ -5,22 +5,25 @@ namespace XNuvem.Dominio.Entidade
 {
     public class AnimalRecord : BaseEntity
     {
-        public virtual long SexoId { get; set; }
-        public virtual long RacaId { get; set; }
         public virtual string Nome { get; set; }
         public virtual DateTime DataNascimento { get; set; }
         public virtual SexoAnimalRecord Sexo { get; set; }
         public virtual RacaRecord Raca { get; set; }
+        public virtual ClienteRecord Dono { get; set; }
     }
 
     public class AnimalMap : EntityMap<AnimalRecord>
     {
-        public AnimalMap ( )
+        public AnimalMap()
         {
-            Table ( "Animal" );
-            Id ( i => i.Id ).Column ( "IDANIMAL" ).GeneratedBy.Increment ( );
-            Map ( m => m.Nome ).Column ( "NMNOME" ).Length ( 255 ).Not.Nullable ( );
-            Map ( m => m.DataNascimento ).Column ( "DTNASCIMENTO" ).Not.Nullable ( );
+            Table("ANIMAL");
+            Id(i => i.Id).Column("SQANIMAL").GeneratedBy.Increment();
+            Map(m => m.Nome).Column("NMNOME").Length(255).Not.Nullable();
+            Map(m => m.DataNascimento).Column("DTNASCIMENTO").Not.Nullable();
+            References(r => r.Sexo).Column("SQSEXO").Not.Nullable().Cascade.None();
+            References(r => r.Raca).Column("SQRACA").Not.Nullable().Cascade.None();
+            References(r => r.Dono).Column("SQCLIENTE").Not.Nullable().Cascade.None();
+
         }
     }
 }

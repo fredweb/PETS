@@ -1,4 +1,5 @@
-﻿using XNuvem.Data;
+﻿using System.Collections.Generic;
+using XNuvem.Data;
 namespace XNuvem.Dominio.Entidade
 {
     public class MaterialRecord : BaseEntity
@@ -6,6 +7,7 @@ namespace XNuvem.Dominio.Entidade
         public virtual CategoriaRecord Categoria { get; set; }
         public virtual string Nome { get; set; }
         public virtual string Descricao { get; set; }
+        public virtual ICollection<EstoqueRecord> Estoque { get; set; }
     }
 
     public class MaretialMap : EntityMap<MaterialRecord>

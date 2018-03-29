@@ -1,4 +1,5 @@
-﻿using XNuvem.Data;
+﻿using System.Collections.Generic;
+using XNuvem.Data;
 
 namespace XNuvem.Dominio.Entidade
 {
@@ -7,6 +8,7 @@ namespace XNuvem.Dominio.Entidade
         public virtual long Id { get; set; }
         public virtual string Nome { get; set; }
         public virtual string Sigla { get; set; }
+        public virtual ICollection<AnimalRecord> Animais { get; set; }
     }
 
     public class SexoAnimalMap : EntityMap<SexoAnimalRecord>

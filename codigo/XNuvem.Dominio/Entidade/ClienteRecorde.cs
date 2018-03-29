@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using XNuvem.Data;
 
 namespace XNuvem.Dominio.Entidade
@@ -9,6 +10,8 @@ namespace XNuvem.Dominio.Entidade
         public virtual string Nome { get; set; }
         public virtual DateTime DtNascimento { get; set; }
         public virtual long SexoId { get; set; }
+        public virtual ICollection<AnimalRecord> Animais { get; set; }
+        public virtual ICollection<AgendaRecord> Agenda { get; set; }
     }
 
     public class ClienteMap : EntityMap<ClienteRecord>

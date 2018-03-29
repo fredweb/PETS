@@ -54,17 +54,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidade\AgendaRecord.cs" />
     <Compile Include="Entidade\AnimalRecord.cs" />
+    <Compile Include="Entidade\AtendimentoRecord.cs" />
     <Compile Include="Entidade\BaseEntity.cs" />
+    <Compile Include="Entidade\CaixaRecord.cs" />
     <Compile Include="Entidade\CategoriaRecord.cs" />
     <Compile Include="Entidade\ClienteRecorde.cs" />
+    <Compile Include="Entidade\DocumentoFornecedorRecord.cs" />
     <Compile Include="Entidade\EspecieRecord.cs" />
+    <Compile Include="Entidade\EstoqueRecord.cs" />
+    <Compile Include="Entidade\FornecedorRecord.cs" />
+    <Compile Include="Entidade\FuncionarioRecord.cs" />
     <Compile Include="Entidade\MaterialRecord.cs" />
+    <Compile Include="Entidade\MovimentacaoRecord.cs" />
     <Compile Include="Entidade\RacaRecord.cs" />
     <Compile Include="Entidade\ServicoRecord.cs" />
     <Compile Include="Entidade\SexoAnimalRecord.cs" />
     <Compile Include="Entidade\SexoRecord.cs" />
+    <Compile Include="Entidade\DocumentoRecord.cs" />
+    <Compile Include="Entidade\StatusAgendaRecord.cs" />
     <Compile Include="Entidade\TipoDocumentoRecord.cs" />
+    <Compile Include="Entidade\TipoFuncionarioRecord.cs" />
     <Compile Include="Infra\DbConnectionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Constantes.cs" />
