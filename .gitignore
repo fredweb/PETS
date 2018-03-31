@@ -5,3 +5,7 @@
 /codigo/XNuvem.Dominio/bin/Debug
 /codigo/ReportViewBase/obj
 /codigo/ReportViewBase/bin
+/codigo/XNuvem.Web/Modules/XNuvem.Clinico/bin
+/codigo/XNuvem.Web/Modules/XNuvem.Clinico/obj/Debug
+/codigo/XNuvem.Web/Modules/XNuvem.Recepcao/bin
+/codigo/XNuvem.Web/Modules/XNuvem.Recepcao/obj/Debug

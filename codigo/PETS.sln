@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.Framework", "XNuvem.Framework\XNuvem.Framework.csproj", "{8360C4B9-A8EF-437D-A962-F46EE8004B1C}"
 EndProject
@@ -32,6 +32,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D2FD27
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportViewBase", "ReportViewBase\ReportViewBase.csproj", "{3F07415B-499B-41BE-A420-DD7EA3DAAEEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.Recepcao", "XNuvem.Web\Modules\XNuvem.Recepcao\XNuvem.Recepcao.csproj", "{314795C8-B955-4254-BED6-EDA713DA0EF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.Clinico", "XNuvem.Web\Modules\XNuvem.Clinico\XNuvem.Clinico.csproj", "{4E184353-FA7B-4684-AF23-3129C26D80D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +62,14 @@ Global
 		{3F07415B-499B-41BE-A420-DD7EA3DAAEEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F07415B-499B-41BE-A420-DD7EA3DAAEEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F07415B-499B-41BE-A420-DD7EA3DAAEEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314795C8-B955-4254-BED6-EDA713DA0EF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314795C8-B955-4254-BED6-EDA713DA0EF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314795C8-B955-4254-BED6-EDA713DA0EF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314795C8-B955-4254-BED6-EDA713DA0EF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E184353-FA7B-4684-AF23-3129C26D80D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E184353-FA7B-4684-AF23-3129C26D80D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E184353-FA7B-4684-AF23-3129C26D80D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E184353-FA7B-4684-AF23-3129C26D80D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +77,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BF83379D-4723-40AF-8165-62ABEFD7932E} = {1D6F1AB5-E7EE-4C3E-A30F-93943D42C7CB}
 		{3F07415B-499B-41BE-A420-DD7EA3DAAEEB} = {1D6F1AB5-E7EE-4C3E-A30F-93943D42C7CB}
+		{314795C8-B955-4254-BED6-EDA713DA0EF8} = {1630EC0B-BB5B-4E30-BDD2-33FEA3088E0F}
+		{4E184353-FA7B-4684-AF23-3129C26D80D7} = {1630EC0B-BB5B-4E30-BDD2-33FEA3088E0F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75DA920B-9F44-4B8E-A583-A802B38ED488}
