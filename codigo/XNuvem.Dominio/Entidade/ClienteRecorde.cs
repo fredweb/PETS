@@ -12,6 +12,7 @@ namespace XNuvem.Dominio.Entidade
         public virtual long SexoId { get; set; }
         public virtual ICollection<AnimalRecord> Animais { get; set; }
         public virtual ICollection<AgendaRecord> Agenda { get; set; }
+        public virtual ICollection<CaixaRecord> Caixa { get; set; }
     }
 
     public class ClienteMap : EntityMap<ClienteRecord>

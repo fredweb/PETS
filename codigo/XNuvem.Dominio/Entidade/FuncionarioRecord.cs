@@ -12,6 +12,7 @@ namespace XNuvem.Dominio.Entidade
         public virtual TipoFuncionarioRecord TipoFuncionario { get; set; }
         public virtual SexoRecord Sexo { get; set; }
         public virtual ICollection<AgendaRecord> Agenda { get; set; }
+        public virtual ICollection<CaixaRecord> Caixa { get; set; }
     }
 
     public class FuncionarioMap : EntityMap<FuncionarioRecord>

@@ -1,4 +1,5 @@
-﻿using XNuvem.Data;
+﻿using System.Collections.Generic;
+using XNuvem.Data;
 
 namespace XNuvem.Dominio.Entidade
 {
@@ -10,6 +11,7 @@ namespace XNuvem.Dominio.Entidade
         public virtual decimal Valor { get; set; }
         public virtual FornecedorRecord Fornecedor { get; set; }
         public virtual MaterialRecord Material { get; set; }
+        public virtual ICollection<MovimentacaoRecord> Movimentacoes { get; set; }
     }
     public class EstoqueMap : EntityMap<EstoqueRecord>
     {

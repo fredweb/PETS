@@ -1,4 +1,5 @@
-﻿using XNuvem.Data;
+﻿using System.Collections.Generic;
+using XNuvem.Data;
 
 namespace XNuvem.Dominio.Entidade
 {
@@ -6,6 +7,8 @@ namespace XNuvem.Dominio.Entidade
     {
         public virtual ClienteRecord Cliente { get; set; }
         public virtual FuncionarioRecord Funcionario { get; set; }
+        public virtual ICollection<MovimentacaoRecord> Movimentacoes { get; set; }
+        public virtual ICollection<PagamentoRecord> Pagamentos { get; set; }
     }
 
     public class CaixaMap : EntityMap<CaixaRecord>

@@ -15,6 +15,7 @@ namespace XNuvem.Dominio.Entidade
         public CategoriaMap ( )
         {
             Table ( "CATEGORIA" );
+            ReadOnly();
             Id ( i => i.Id ).Column ( "SQCATEGORIA" ).GeneratedBy.Increment();
             Map ( m => m.Descricao ).Column ( "DSDESCRICAO" ).Length ( 500 ).Not.Nullable ( );
             Map ( m => m.Sigla ).Column ( "SGDESCRICAO" ).Length ( 5 ).Not.Nullable ( );

@@ -64,10 +64,12 @@
     <Compile Include="Entidade\DocumentoFornecedorRecord.cs" />
     <Compile Include="Entidade\EspecieRecord.cs" />
     <Compile Include="Entidade\EstoqueRecord.cs" />
+    <Compile Include="Entidade\FormaPagamentoRecord.cs" />
     <Compile Include="Entidade\FornecedorRecord.cs" />
     <Compile Include="Entidade\FuncionarioRecord.cs" />
     <Compile Include="Entidade\MaterialRecord.cs" />
     <Compile Include="Entidade\MovimentacaoRecord.cs" />
+    <Compile Include="Entidade\PagamentoRecord.cs" />
     <Compile Include="Entidade\RacaRecord.cs" />
     <Compile Include="Entidade\ServicoRecord.cs" />
     <Compile Include="Entidade\SexoAnimalRecord.cs" />
