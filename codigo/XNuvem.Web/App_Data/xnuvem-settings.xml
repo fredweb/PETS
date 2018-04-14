@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ConnectionSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <DataConnectionString>Server=localhost;Database=BS_CANDEIAS;User Id=sa;Password=sysmaker;Connection Timeout=240</DataConnectionString>
+  <DataConnectionString>Server=192.168.56.101;Database=pets;User Id=sa;Password=Erro@10;Connection Timeout=240</DataConnectionString>
   <DataProvider>System.Data.SqlClient</DataProvider>
-  <CreatedAt>2016-08-31T10:04:35.3800775-03:00</CreatedAt>
-  <UpdatedAt>2017-08-11T15:48:14.1927364-03:00</UpdatedAt>
+  <CreatedAt>2018-04-14T02:50:00.2030858-03:00</CreatedAt>
+  <UpdatedAt>2018-04-14T03:09:38.0768707-03:00</UpdatedAt>
 </ConnectionSettings>

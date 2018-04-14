@@ -7,8 +7,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- 
-        Autor: George Santos 
+    <!--
+        Autor: George Santos
         Copyright (c) 2016
     -->
     <meta charset="utf-8">
@@ -26,20 +26,21 @@
     <div class="login-box">
         <div class="login-box-body">
             <div class="login-logo">
-                <span><b>Business</b> Suite</span>
+                <span><b>PET</b>s</span>
             </div>
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" })) { 
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            {
                 @Html.AntiForgeryToken()
                 <div class="form-group">
                     <span class="text-danger">@ViewBag.ErroMessage</span>
                 </div>
                 <div class="form-group has-feedback">
-                    @Html.TextBoxFor(m => m.UserName, new { @class="form-control", placeholder="Nome do usuário" })
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Nome do usuário" })
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     @Html.ValidationMessageFor(m => m.UserName)
                 </div>
                 <div class="form-group has-feedback">
-                    @Html.PasswordFor(m => m.Password, new { @class="form-control", placeholder="Senha" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Senha" })
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
@@ -113,10 +114,10 @@
     <script src="~/Scripts/jquery.backstretch.js"></script>
     <script>
     $.backstretch([
-      '@Url.Content("~/Content/img/login-bg1.jpg")',
-      '@Url.Content("~/Content/img/login-bg2.jpg")',
-      '@Url.Content("~/Content/img/login-bg3.jpg")',
-      '@Url.Content("~/Content/img/login-bg4.jpg")'
+      '@Url.Content("~/Content/img/kitty-2948404_1920.jpg")',
+        '@Url.Content("~/Content/img/medical-563427_1920.jpg")',
+        '@Url.Content("~/Content/img/sea-2361247_1920.jpg")',
+        '@Url.Content("~/Content/img/login-bg5.jpg")'
     ], {
         fade: 750,
         duration: 4000

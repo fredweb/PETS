@@ -117,9 +117,8 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=4.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\NHibernate.4.1.0.4000\lib\net40\NHibernate.dll</HintPath>
@@ -339,11 +338,15 @@
     <Content Include="Content\font-awesome-4.4.0\HELP-US-OUT.txt" />
     <Content Include="Content\img\bg_home.jpg" />
     <Content Include="Content\img\error-page.png" />
+    <Content Include="Content\img\kitty-2948404_1920.jpg" />
     <Content Include="Content\img\login-bg-blur1.png" />
     <Content Include="Content\img\login-bg4.jpg" />
     <Content Include="Content\img\login-bg1.jpg" />
     <Content Include="Content\img\login-bg2.jpg" />
     <Content Include="Content\img\login-bg3.jpg" />
+    <Content Include="Content\img\login-bg5.jpg" />
+    <Content Include="Content\img\medical-563427_1920.jpg" />
+    <Content Include="Content\img\sea-2361247_1920.jpg" />
     <Content Include="Content\ionicons-2.0.1\builder\cheatsheet\icon-row.html" />
     <Content Include="Content\ionicons-2.0.1\builder\cheatsheet\template.html" />
     <Content Include="Content\ionicons-2.0.1\cheatsheet.html" />
@@ -2915,6 +2918,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\XNuvem.Dominio\XNuvem.Dominio.csproj">
+      <Project>{bf83379d-4723-40af-8165-62abefd7932e}</Project>
+      <Name>XNuvem.Dominio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XNuvem.Framework\XNuvem.Framework.csproj">
       <Project>{8360c4b9-a8ef-437d-a962-f46ee8004b1c}</Project>
       <Name>XNuvem.Framework</Name>

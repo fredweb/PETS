@@ -7,6 +7,6 @@
   <add Key="SAPPassword" Value="gecand2015" />
   <add Key="SAPMinPool" Value="3" />
   <add Key="SAPMaxPool" Value="25" />
-  <add Key="SAPConnectionString" Value="Server=localhost;Database=SBO_CAND_GER;User Id=sa;Password=sysmaker;Connection Timeout=240" />
   <add Key="ApplicationDB" Value="BS_CANDEIAS" />
+  <add Key="SAPConnectionString" Value="Server=192.168.56.101;        Database=pets;        User Id=sa;        Password=Erro@10;        Connection Timeout=240" />
 </GeneralSettings>
