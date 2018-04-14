@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.Clinico", "XNuvem.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.Portal", "XNuvem.Web\Modules\XNuvem.Portal\XNuvem.Portal.csproj", "{C96B7C09-AB3C-4927-AB1C-73FC498D1338}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNuvem.Administrativo", "XNuvem.Web\Modules\XNuvem.Administrativo\XNuvem.Administrativo.csproj", "{03E356DE-F0EE-45B8-9FE5-FF714611DB4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,10 @@ Global
 		{C96B7C09-AB3C-4927-AB1C-73FC498D1338}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C96B7C09-AB3C-4927-AB1C-73FC498D1338}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C96B7C09-AB3C-4927-AB1C-73FC498D1338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03E356DE-F0EE-45B8-9FE5-FF714611DB4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E356DE-F0EE-45B8-9FE5-FF714611DB4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E356DE-F0EE-45B8-9FE5-FF714611DB4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E356DE-F0EE-45B8-9FE5-FF714611DB4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{314795C8-B955-4254-BED6-EDA713DA0EF8} = {1630EC0B-BB5B-4E30-BDD2-33FEA3088E0F}
 		{4E184353-FA7B-4684-AF23-3129C26D80D7} = {1630EC0B-BB5B-4E30-BDD2-33FEA3088E0F}
 		{C96B7C09-AB3C-4927-AB1C-73FC498D1338} = {1630EC0B-BB5B-4E30-BDD2-33FEA3088E0F}
+		{03E356DE-F0EE-45B8-9FE5-FF714611DB4B} = {1630EC0B-BB5B-4E30-BDD2-33FEA3088E0F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75DA920B-9F44-4B8E-A583-A802B38ED488}
