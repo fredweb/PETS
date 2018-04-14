@@ -1,4 +1,4 @@
-﻿namespace XNuvem.Dominio.Entidade
+﻿namespace XNuvem.Dominio.Entidade.Base
 {
     public class BaseEntity
     {

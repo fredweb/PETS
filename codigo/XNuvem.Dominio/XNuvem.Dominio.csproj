@@ -57,7 +57,7 @@
     <Compile Include="Entidade\AgendaRecord.cs" />
     <Compile Include="Entidade\AnimalRecord.cs" />
     <Compile Include="Entidade\AtendimentoRecord.cs" />
-    <Compile Include="Entidade\BaseEntity.cs" />
+    <Compile Include="Entidade\Base\BaseEntity.cs" />
     <Compile Include="Entidade\CaixaRecord.cs" />
     <Compile Include="Entidade\CategoriaRecord.cs" />
     <Compile Include="Entidade\ClienteRecorde.cs" />

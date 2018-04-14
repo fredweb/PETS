@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using XNuvem.Data;
+using XNuvem.Dominio.Entidade.Base;
 
 namespace XNuvem.Dominio.Entidade
 {

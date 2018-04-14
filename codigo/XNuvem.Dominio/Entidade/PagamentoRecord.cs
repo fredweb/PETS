@@ -1,4 +1,5 @@
 ﻿using XNuvem.Data;
+using XNuvem.Dominio.Entidade.Base;
 
 namespace XNuvem.Dominio.Entidade
 {
@@ -15,8 +16,8 @@ namespace XNuvem.Dominio.Entidade
         {
             Table("PAGAMENTO");
             Id(k => k.Id).Column("SQPAGAMENTO").GeneratedBy.Increment();
-            Map(m => m.ValorTotal).Column("VLVALORTOTAL").Scale(7).Precision(2).Not.Nullable();
-            Map(m => m.Desconto).Column("NUDESCONTO").Scale(7).Precision(2).Not.Nullable();
+            Map(m => m.ValorTotal).Column("VLVALORTOTAL").Scale(2).Precision(7).Not.Nullable();
+            Map(m => m.Desconto).Column("NUDESCONTO").Scale(2).Precision(7).Not.Nullable();
             References(r => r.Caixa).Column("SQCAIXA").ForeignKey().Not.Nullable();
             References(r => r.FormaPagamento).Column("SQFORMAPAGAMENTO").ForeignKey().Not.Nullable();
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using XNuvem.Data;
+using XNuvem.Dominio.Entidade.Base;
 
 namespace XNuvem.Dominio.Entidade
 {

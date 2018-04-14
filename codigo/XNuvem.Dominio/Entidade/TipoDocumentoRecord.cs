@@ -1,4 +1,5 @@
 ﻿using XNuvem.Data;
+using XNuvem.Dominio.Entidade.Base;
 
 namespace XNuvem.Dominio.Entidade
 {
@@ -13,6 +14,7 @@ namespace XNuvem.Dominio.Entidade
         public TipoDocumentoMap()
         {
             Table("TIPODOCUMENTO");
+            ReadOnly();
             Id(i => i.Id).Column("IDTIPODOCUMENTO").GeneratedBy.Increment();
             Map(m => m.Nome).Column("NMNOME").Length(500).Not.Nullable();
             Map(m => m.Sigla).Column("SGTIPODOCUMENTO").Length(4).Not.Nullable();

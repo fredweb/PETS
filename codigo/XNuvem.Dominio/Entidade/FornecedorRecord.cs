@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using XNuvem.Data;
+using XNuvem.Dominio.Entidade.Base;
 
 namespace XNuvem.Dominio.Entidade
 {
@@ -9,6 +10,7 @@ namespace XNuvem.Dominio.Entidade
         public virtual string RazaoSocial { get; set; }
         public virtual string Telefone { get; set; }
         public virtual ICollection<EstoqueRecord> Estoque { get; set; }
+        public virtual ICollection<DocumentoFornecedorRecord> Documentos { get; set; }
     }
     public class FornecedorMap: EntityMap<FornecedorRecord>
     {
@@ -19,6 +21,8 @@ namespace XNuvem.Dominio.Entidade
             Map(m => m.RazaoSocial).Column("NMRAZAOSOCIAL").Length(500).Not.Nullable();
             Map(m => m.Fantasia).Column("NMFANTASIA").Length(500).Not.Nullable();
             Map(m => m.Telefone).Column("NUTELEFONE").Length(20).Not.Nullable();
+            HasMany(h => h.Documentos).KeyColumn("SQDOCUMENTO").ForeignKeyConstraintName("FKFORNECEDORDOCUMENTO")
+                .Cascade.All().Not.KeyNullable();
         }
     }
 }
