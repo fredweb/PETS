@@ -23,7 +23,7 @@ namespace XNuvem.Dominio.Entidade
             Map(m => m.Lote).Column("NULOTE").Length(100).Not.Nullable();
             Map(m => m.Remessa).Column("NUREMESSA").Length(100).Not.Nullable();
             Map(m => m.Quantidade).Column("NUQUANTIDADE").Not.Nullable();
-            Map(m => m.Valor).Column("NUVALORUNITARIO").Scale(7).Precision(2).Not.Nullable();
+            Map(m => m.Valor).Column("NUVALORUNITARIO").Scale(2).Precision(7).Not.Nullable();
             References(r => r.Fornecedor).Column("SQFORNECEDOR").Cascade.None().Not.Nullable();
             References(r => r.Material).Column("SQMATERIAL").Cascade.None().Not.Nullable();
         }

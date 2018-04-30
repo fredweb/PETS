@@ -18,7 +18,7 @@ namespace XNuvem.Data.Schema
         public MigrationHistoryMap()
         {
             Id(x => x.Id).GeneratedBy.Identity();
-            Map(X => X.Name).Length(100).Not.Nullable();
+            Map(x => x.Name).Length(100).Not.Nullable();
             Map(x => x.Version).Length(30).Not.Nullable();
             Map(x => x.LongVersion).Not.Nullable();
             Map(x => x.CreatedAt);

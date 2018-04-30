@@ -1,0 +1,217 @@
+2018-04-30 12:55:44,297 [5] NHibernate.Tool.hbm2ddl.SchemaValidator - could not complete schema validation
+NHibernate.HibernateException: Missing table: AGENDA
+   em NHibernate.Cfg.Configuration.ValidateSchema(Dialect dialect, DatabaseMetadata databaseMetadata)
+   em NHibernate.Tool.hbm2ddl.SchemaValidator.Validate()
+2018-04-30 12:56:26,564 [7] NHibernate.Tool.hbm2ddl.SchemaValidator - could not complete schema validation
+NHibernate.HibernateException: Missing table: AGENDA
+   em NHibernate.Cfg.Configuration.ValidateSchema(Dialect dialect, DatabaseMetadata databaseMetadata)
+   em NHibernate.Tool.hbm2ddl.SchemaValidator.Validate()
+2018-04-30 12:56:47,250 [7] NHibernate.Tool.hbm2ddl.SchemaExport - The scale (7) for column 'NUVALORUNITARIO' must be within the range 0 to 2.
+System.Data.SqlClient.SqlException (0x80131904): The scale (7) for column 'NUVALORUNITARIO' must be within the range 0 to 2.
+   em System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   em System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   em System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   em NHibernate.Tool.hbm2ddl.SchemaExport.ExecuteSql(IDbCommand cmd, String sql)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean throwOnError, TextWriter exportOutput, IDbCommand statement, String sql)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean justDrop, IDbConnection connection, TextWriter exportOutput)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean justDrop, TextWriter exportOutput)
+ClientConnectionId:ad07a6d4-ecad-46fb-acec-ffc5945657fb
+Error Number:183,State:1,Class:15
+2018-04-30 12:56:47,294 [7] XNuvem.Exceptions.DefaultPolicyException - Erro inesperado ao executar uma operação
+NHibernate.HibernateException: The scale (7) for column 'NUVALORUNITARIO' must be within the range 0 to 2. ---> System.Data.SqlClient.SqlException: The scale (7) for column 'NUVALORUNITARIO' must be within the range 0 to 2.
+   em System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   em System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   em System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   em NHibernate.Tool.hbm2ddl.SchemaExport.ExecuteSql(IDbCommand cmd, String sql)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean throwOnError, TextWriter exportOutput, IDbCommand statement, String sql)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean justDrop, IDbConnection connection, TextWriter exportOutput)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean justDrop, TextWriter exportOutput)
+   --- Fim do rastreamento de pilha de exceções internas ---
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean justDrop, TextWriter exportOutput)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Boolean useStdOut, Boolean execute, Boolean justDrop)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Create(Boolean useStdOut, Boolean execute)
+   em XNuvem.Data.Schema.DefaultSchemaUpdate.CreateDatabase() na D:\Projetos\PETS\codigo\XNuvem.Framework\Data\Schema\DefaultSchemaUpdate.cs:linha 61
+   em XNuvem.Web.Controllers.SettingsInstallController.<Install>d__10.MoveNext() na D:\Projetos\PETS\codigo\XNuvem.Web\Controllers\SettingsInstallController.cs:linha 61
+--- Fim do rastreamento de pilha do local anterior onde a exceção foi gerada ---
+   em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em System.Web.Mvc.Async.TaskAsyncActionDescriptor.EndExecute(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass8_0.<BeginInvokeAsynchronousActionMethod>b__1(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__11_0()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_1.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__3()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__5(IAsyncResult asyncResult)
+2018-04-30 12:59:29,866 [8] NHibernate.Impl.MultiQueryImpl - Failed to execute multi query: [select user0_.Id as Id1_26_0_, identityro2_.Id as Id1_24_1_, user0_.AccessFailedCount as Acces3_26_0_, user0_.Email as Email4_26_0_, user0_.EmailConfirmed as Email5_26_0_, user0_.LockoutEnabled as Locko6_26_0_, user0_.LockoutEndDateUtc as Locko7_26_0_, user0_.PasswordHash as Passw8_26_0_, user0_.PhoneNumber as Phone9_26_0_, user0_.PhoneNumberConfirmed as Phon10_26_0_, user0_.TwoFactorEnabled as TwoF11_26_0_, user0_.UserName as User12_26_0_, user0_.SecurityStamp as Secu13_26_0_, user0_.FullName as Full14_26_0_, user0_.SlpCode as SlpC15_26_0_, user0_.SlpName as SlpN16_26_0_, user0_.QryGroup60 as QryG17_26_0_, user0_.QryGroup61 as QryG18_26_0_, user0_.QryGroup62 as QryG19_26_0_, identityro2_.Name as Name2_24_1_, roles1_.IdentityUserCode as Ident2_25_0__, roles1_.IdentityRoleCode as Ident1_25_0__ from AspNetUsers user0_ left outer join AspNetUserRoles roles1_ on user0_.Id=roles1_.IdentityUserCode left outer join AspNetRoles identityro2_ on roles1_.IdentityRoleCode=identityro2_.Id where user0_.ClassType='User' and upper(user0_.UserName)=?;
+select user0_.Id as Id1_26_0_, claims1_.Id as Id1_23_1_, user0_.AccessFailedCount as Acces3_26_0_, user0_.Email as Email4_26_0_, user0_.EmailConfirmed as Email5_26_0_, user0_.LockoutEnabled as Locko6_26_0_, user0_.LockoutEndDateUtc as Locko7_26_0_, user0_.PasswordHash as Passw8_26_0_, user0_.PhoneNumber as Phone9_26_0_, user0_.PhoneNumberConfirmed as Phon10_26_0_, user0_.TwoFactorEnabled as TwoF11_26_0_, user0_.UserName as User12_26_0_, user0_.SecurityStamp as Secu13_26_0_, user0_.FullName as Full14_26_0_, user0_.SlpCode as SlpC15_26_0_, user0_.SlpName as SlpN16_26_0_, user0_.QryGroup60 as QryG17_26_0_, user0_.QryGroup61 as QryG18_26_0_, user0_.QryGroup62 as QryG19_26_0_, claims1_.ClaimType as Claim2_23_1_, claims1_.ClaimValue as Claim3_23_1_, claims1_.IdentityUserCode as Ident4_23_1_, claims1_.IdentityUserCode as Ident4_23_0__, claims1_.Id as Id1_23_0__ from AspNetUsers user0_ left outer join AspNetUserClaims claims1_ on user0_.Id=claims1_.IdentityUserCode where user0_.ClassType='User' and upper(user0_.UserName)=?;
+select user0_.Id as Id1_26_, user0_.AccessFailedCount as Acces3_26_, user0_.Email as Email4_26_, user0_.EmailConfirmed as Email5_26_, user0_.LockoutEnabled as Locko6_26_, user0_.LockoutEndDateUtc as Locko7_26_, user0_.PasswordHash as Passw8_26_, user0_.PhoneNumber as Phone9_26_, user0_.PhoneNumberConfirmed as Phon10_26_, user0_.TwoFactorEnabled as TwoF11_26_, user0_.UserName as User12_26_, user0_.SecurityStamp as Secu13_26_, user0_.FullName as Full14_26_, user0_.SlpCode as SlpC15_26_, user0_.SlpName as SlpN16_26_, user0_.QryGroup60 as QryG17_26_, user0_.QryGroup61 as QryG18_26_, user0_.QryGroup62 as QryG19_26_, logins1_.IdentityUserCode as Ident1_27_0__, logins1_.LoginProvider as Login2_27_0__, logins1_.ProviderKey as Provi3_27_0__ from AspNetUsers user0_ left outer join Logins logins1_ on user0_.Id=logins1_.IdentityUserCode where user0_.ClassType='User' and upper(user0_.UserName)=?;
+select user0_.Id as Id1_26_, user0_.AccessFailedCount as Acces3_26_, user0_.Email as Email4_26_, user0_.EmailConfirmed as Email5_26_, user0_.LockoutEnabled as Locko6_26_, user0_.LockoutEndDateUtc as Locko7_26_, user0_.PasswordHash as Passw8_26_, user0_.PhoneNumber as Phone9_26_, user0_.PhoneNumberConfirmed as Phon10_26_, user0_.TwoFactorEnabled as TwoF11_26_, user0_.UserName as User12_26_, user0_.SecurityStamp as Secu13_26_, user0_.FullName as Full14_26_, user0_.SlpCode as SlpC15_26_, user0_.SlpName as SlpN16_26_, user0_.QryGroup60 as QryG17_26_, user0_.QryGroup61 as QryG18_26_, user0_.QryGroup62 as QryG19_26_ from AspNetUsers user0_ where user0_.ClassType='User' and upper(user0_.UserName)=?;
+]
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'AspNetUsers'.
+Statement(s) could not be prepared.
+   em System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   em System.Data.SqlClient.SqlDataReader.get_MetaData()
+   em System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   em System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   em System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   em System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   em System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   em System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   em System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   em NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   em NHibernate.Driver.BatcherDataReaderWrapper..ctor(IBatcher batcher, IDbCommand command)
+   em NHibernate.Driver.BasicResultSetsCommand.GetReader(Nullable`1 commandTimeout)
+   em NHibernate.Impl.MultiQueryImpl.DoList()
+ClientConnectionId:ded3ea0f-df55-4cab-9033-14ef252a70f6
+Error Number:208,State:1,Class:16
+2018-04-30 12:59:29,954 [5] XNuvem.Exceptions.DefaultPolicyException - Erro inesperado ao executar uma operação
+NHibernate.Exceptions.GenericADOException: Failed to execute multi query[SQL: select user0_.Id as Id1_26_0_, identityro2_.Id as Id1_24_1_, user0_.AccessFailedCount as Acces3_26_0_, user0_.Email as Email4_26_0_, user0_.EmailConfirmed as Email5_26_0_, user0_.LockoutEnabled as Locko6_26_0_, user0_.LockoutEndDateUtc as Locko7_26_0_, user0_.PasswordHash as Passw8_26_0_, user0_.PhoneNumber as Phone9_26_0_, user0_.PhoneNumberConfirmed as Phon10_26_0_, user0_.TwoFactorEnabled as TwoF11_26_0_, user0_.UserName as User12_26_0_, user0_.SecurityStamp as Secu13_26_0_, user0_.FullName as Full14_26_0_, user0_.SlpCode as SlpC15_26_0_, user0_.SlpName as SlpN16_26_0_, user0_.QryGroup60 as QryG17_26_0_, user0_.QryGroup61 as QryG18_26_0_, user0_.QryGroup62 as QryG19_26_0_, identityro2_.Name as Name2_24_1_, roles1_.IdentityUserCode as Ident2_25_0__, roles1_.IdentityRoleCode as Ident1_25_0__ from AspNetUsers user0_ left outer join AspNetUserRoles roles1_ on user0_.Id=roles1_.IdentityUserCode left outer join AspNetRoles identityro2_ on roles1_.IdentityRoleCode=identityro2_.Id where user0_.ClassType='User' and upper(user0_.UserName)=?;
+select user0_.Id as Id1_26_0_, claims1_.Id as Id1_23_1_, user0_.AccessFailedCount as Acces3_26_0_, user0_.Email as Email4_26_0_, user0_.EmailConfirmed as Email5_26_0_, user0_.LockoutEnabled as Locko6_26_0_, user0_.LockoutEndDateUtc as Locko7_26_0_, user0_.PasswordHash as Passw8_26_0_, user0_.PhoneNumber as Phone9_26_0_, user0_.PhoneNumberConfirmed as Phon10_26_0_, user0_.TwoFactorEnabled as TwoF11_26_0_, user0_.UserName as User12_26_0_, user0_.SecurityStamp as Secu13_26_0_, user0_.FullName as Full14_26_0_, user0_.SlpCode as SlpC15_26_0_, user0_.SlpName as SlpN16_26_0_, user0_.QryGroup60 as QryG17_26_0_, user0_.QryGroup61 as QryG18_26_0_, user0_.QryGroup62 as QryG19_26_0_, claims1_.ClaimType as Claim2_23_1_, claims1_.ClaimValue as Claim3_23_1_, claims1_.IdentityUserCode as Ident4_23_1_, claims1_.IdentityUserCode as Ident4_23_0__, claims1_.Id as Id1_23_0__ from AspNetUsers user0_ left outer join AspNetUserClaims claims1_ on user0_.Id=claims1_.IdentityUserCode where user0_.ClassType='User' and upper(user0_.UserName)=?;
+select user0_.Id as Id1_26_, user0_.AccessFailedCount as Acces3_26_, user0_.Email as Email4_26_, user0_.EmailConfirmed as Email5_26_, user0_.LockoutEnabled as Locko6_26_, user0_.LockoutEndDateUtc as Locko7_26_, user0_.PasswordHash as Passw8_26_, user0_.PhoneNumber as Phone9_26_, user0_.PhoneNumberConfirmed as Phon10_26_, user0_.TwoFactorEnabled as TwoF11_26_, user0_.UserName as User12_26_, user0_.SecurityStamp as Secu13_26_, user0_.FullName as Full14_26_, user0_.SlpCode as SlpC15_26_, user0_.SlpName as SlpN16_26_, user0_.QryGroup60 as QryG17_26_, user0_.QryGroup61 as QryG18_26_, user0_.QryGroup62 as QryG19_26_, logins1_.IdentityUserCode as Ident1_27_0__, logins1_.LoginProvider as Login2_27_0__, logins1_.ProviderKey as Provi3_27_0__ from AspNetUsers user0_ left outer join Logins logins1_ on user0_.Id=logins1_.IdentityUserCode where user0_.ClassType='User' and upper(user0_.UserName)=?;
+select user0_.Id as Id1_26_, user0_.AccessFailedCount as Acces3_26_, user0_.Email as Email4_26_, user0_.EmailConfirmed as Email5_26_, user0_.LockoutEnabled as Locko6_26_, user0_.LockoutEndDateUtc as Locko7_26_, user0_.PasswordHash as Passw8_26_, user0_.PhoneNumber as Phone9_26_, user0_.PhoneNumberConfirmed as Phon10_26_, user0_.TwoFactorEnabled as TwoF11_26_, user0_.UserName as User12_26_, user0_.SecurityStamp as Secu13_26_, user0_.FullName as Full14_26_, user0_.SlpCode as SlpC15_26_, user0_.SlpName as SlpN16_26_, user0_.QryGroup60 as QryG17_26_, user0_.QryGroup61 as QryG18_26_, user0_.QryGroup62 as QryG19_26_ from AspNetUsers user0_ where user0_.ClassType='User' and upper(user0_.UserName)=?;
+] ---> System.Data.SqlClient.SqlException: Invalid object name 'AspNetUsers'.
+Statement(s) could not be prepared.
+   em System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   em System.Data.SqlClient.SqlDataReader.get_MetaData()
+   em System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   em System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   em System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   em System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   em System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   em System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   em System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   em NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   em NHibernate.Driver.BatcherDataReaderWrapper..ctor(IBatcher batcher, IDbCommand command)
+   em NHibernate.Driver.BasicResultSetsCommand.GetReader(Nullable`1 commandTimeout)
+   em NHibernate.Impl.MultiQueryImpl.DoList()
+   --- Fim do rastreamento de pilha de exceções internas ---
+   em NHibernate.Impl.MultiQueryImpl.DoList()
+   em NHibernate.Impl.MultiQueryImpl.List()
+   em NHibernate.Impl.FutureQueryBatch.GetResultsFrom(IMultiQuery multiApproach)
+   em NHibernate.Impl.FutureBatch`2.GetResults()
+   em NHibernate.Impl.FutureBatch`2.GetCurrentResult[TResult](Int32 currentIndex)
+   em NHibernate.Impl.FutureBatch`2.<>c__DisplayClass13_0`1.<GetEnumerator>b__0()
+   em NHibernate.Impl.DelayedEnumerator`1.<get_Enumerable>d__8.MoveNext()
+   em System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   em NHibernate.AspNet.Identity.UserStore`1.<>c__DisplayClass1d.<GetUserAggregateAsync>b__1c()
+   em System.Threading.Tasks.Task`1.InnerInvoke()
+   em System.Threading.Tasks.Task.Execute()
+--- Fim do rastreamento de pilha do local anterior onde a exceção foi gerada ---
+   em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em Microsoft.AspNet.Identity.TaskExtensions.CultureAwaiter`1.GetResult()
+   em Microsoft.AspNet.Identity.Owin.SignInManager`2.<PasswordSignInAsync>d__29.MoveNext()
+--- Fim do rastreamento de pilha do local anterior onde a exceção foi gerada ---
+   em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   em XNuvem.Security.XNuvemSignInService.<XNuvem-Security-ISignInService-PasswordSignInAsync>d__10.MoveNext() na D:\Projetos\PETS\codigo\XNuvem.Framework\Security\XNuvemSignInService.cs:linha 40
+--- Fim do rastreamento de pilha do local anterior onde a exceção foi gerada ---
+   em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   em XNuvem.Web.Controllers.AccountController.<Login>d__6.MoveNext() na D:\Projetos\PETS\codigo\XNuvem.Web\Controllers\AccountController.cs:linha 55
+--- Fim do rastreamento de pilha do local anterior onde a exceção foi gerada ---
+   em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em System.Web.Mvc.Async.TaskAsyncActionDescriptor.EndExecute(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass8_0.<BeginInvokeAsynchronousActionMethod>b__1(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__11_0()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_1.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__3()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__5(IAsyncResult asyncResult)
+2018-04-30 13:00:57,619 [6] NHibernate.Tool.hbm2ddl.SchemaValidator - could not complete schema validation
+NHibernate.HibernateException: Missing table: ESTOQUE
+   em NHibernate.Cfg.Configuration.ValidateSchema(Dialect dialect, DatabaseMetadata databaseMetadata)
+   em NHibernate.Tool.hbm2ddl.SchemaValidator.Validate()
+2018-04-30 13:01:34,590 [6] NHibernate.Tool.hbm2ddl.SchemaValidator - could not complete schema validation
+NHibernate.HibernateException: Missing table: ESTOQUE
+   em NHibernate.Cfg.Configuration.ValidateSchema(Dialect dialect, DatabaseMetadata databaseMetadata)
+   em NHibernate.Tool.hbm2ddl.SchemaValidator.Validate()
+2018-04-30 13:01:58,349 [6] NHibernate.Tool.hbm2ddl.SchemaExport - The scale (7) for column 'VLVALOR' must be within the range 0 to 2.
+System.Data.SqlClient.SqlException (0x80131904): The scale (7) for column 'VLVALOR' must be within the range 0 to 2.
+   em System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   em System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   em System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   em NHibernate.Tool.hbm2ddl.SchemaExport.ExecuteSql(IDbCommand cmd, String sql)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean throwOnError, TextWriter exportOutput, IDbCommand statement, String sql)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean justDrop, IDbConnection connection, TextWriter exportOutput)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean justDrop, TextWriter exportOutput)
+ClientConnectionId:f52025b5-5cd8-4824-bd33-2d00887923f3
+Error Number:183,State:1,Class:15
+2018-04-30 13:01:58,405 [6] XNuvem.Exceptions.DefaultPolicyException - Erro inesperado ao executar uma operação
+NHibernate.HibernateException: The scale (7) for column 'VLVALOR' must be within the range 0 to 2. ---> System.Data.SqlClient.SqlException: The scale (7) for column 'VLVALOR' must be within the range 0 to 2.
+   em System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   em System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   em System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   em System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   em System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   em System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   em NHibernate.Tool.hbm2ddl.SchemaExport.ExecuteSql(IDbCommand cmd, String sql)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean throwOnError, TextWriter exportOutput, IDbCommand statement, String sql)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean justDrop, IDbConnection connection, TextWriter exportOutput)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean justDrop, TextWriter exportOutput)
+   --- Fim do rastreamento de pilha de exceções internas ---
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Action`1 scriptAction, Boolean execute, Boolean justDrop, TextWriter exportOutput)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Execute(Boolean useStdOut, Boolean execute, Boolean justDrop)
+   em NHibernate.Tool.hbm2ddl.SchemaExport.Create(Boolean useStdOut, Boolean execute)
+   em XNuvem.Data.Schema.DefaultSchemaUpdate.CreateDatabase() na D:\Projetos\PETS\codigo\XNuvem.Framework\Data\Schema\DefaultSchemaUpdate.cs:linha 61
+   em XNuvem.Web.Controllers.SettingsInstallController.<Install>d__10.MoveNext() na D:\Projetos\PETS\codigo\XNuvem.Web\Controllers\SettingsInstallController.cs:linha 61
+--- Fim do rastreamento de pilha do local anterior onde a exceção foi gerada ---
+   em System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   em System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   em System.Web.Mvc.Async.TaskAsyncActionDescriptor.EndExecute(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass8_0.<BeginInvokeAsynchronousActionMethod>b__1(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__11_0()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_1.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__3()
+   em System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__5(IAsyncResult asyncResult)
+2018-04-30 13:11:35,995 [5] NHibernate.Tool.hbm2ddl.SchemaValidator - could not complete schema validation
+NHibernate.HibernateException: Missing table: AGENDA
+   em NHibernate.Cfg.Configuration.ValidateSchema(Dialect dialect, DatabaseMetadata databaseMetadata)
+   em NHibernate.Tool.hbm2ddl.SchemaValidator.Validate()
+2018-04-30 13:12:25,557 [7] NHibernate.Tool.hbm2ddl.SchemaValidator - could not complete schema validation
+NHibernate.HibernateException: Missing table: AGENDA
+   em NHibernate.Cfg.Configuration.ValidateSchema(Dialect dialect, DatabaseMetadata databaseMetadata)
+   em NHibernate.Tool.hbm2ddl.SchemaValidator.Validate()

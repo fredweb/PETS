@@ -20,8 +20,8 @@ namespace XNuvem.Dominio.Entidade
             Table("MOVIMENTACAO");
             Id(k => k.Id).Column("SQMOVIMENTACAO").GeneratedBy.Increment();
             Map(m => m.Quantidade).Column("QTQUANTIDADE");
-            Map(m => m.Valor).Column("VLVALOR").Scale(7).Precision(2).Not.Nullable();
-            Map(m => m.Desconto).Column("VLDESCONTO").Scale(7).Precision(2);
+            Map(m => m.Valor).Column("VLVALOR").Scale(2).Precision(7).Not.Nullable();
+            Map(m => m.Desconto).Column("VLDESCONTO").Scale(2).Precision(7);
             References(r => r.Servico).Column("SQSERVICO").ForeignKey().Cascade.None();
             References(r => r.Estoque).Column("SQESTOQUE").ForeignKey().Cascade.None();
             References(r => r.Caixa).Column("SQCAIXA").ForeignKey().Cascade.None();

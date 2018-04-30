@@ -35,3 +35,8 @@
 /codigo/XNuvem.Web/App_Data/Logs/xnuvem-debug-2018.04.14.log
 /codigo/XNuvem.Web/Modules/XNuvem.Administrativo/bin
 /codigo/XNuvem.Web/Modules/XNuvem.Administrativo/obj/Debug
+/codigo/XNuvem.Dominio/bin/Release
+/codigo/XNuvem.Dominio/obj/Release
+/codigo/XNuvem.Web/Modules/XNuvem.Administrativo/obj/Release
+/codigo/XNuvem.Web/Modules/XNuvem.Clinico/obj/Release
+/codigo/XNuvem.Web/Modules/XNuvem.Recepcao/obj/Release
